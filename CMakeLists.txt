@@ -7,11 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file(GLOB SOURCES_ENEMY "source/enemies/*.cpp")
 file(GLOB SOURCES_PLAYER "source/player/*.cpp")
 file(GLOB SOURCE_MANAGER "source/*.cpp")
-list(APPEND SOURCES ${SOURCES_ENEMY} ${SOURCES_PLAYER} ${SOURCE_MANAGER} main.cpp)
+file(GLOB SOURCE_STATE "source/State/*.cpp")
+list(APPEND SOURCES ${SOURCES_ENEMY} ${SOURCES_PLAYER} ${SOURCE_MANAGER} ${SOURCE_STATE} main.cpp)
 
 add_executable(survivor ${SOURCES})
 
-target_include_directories(survivor PRIVATE include include/enemies include/player)
+target_include_directories(survivor PRIVATE include include/enemies include/player include/State)
 
-find_package(SFML 2.5 COMPONENTS graphics window system REQUIRED)
-target_link_libraries(survivor sfml-graphics sfml-window sfml-system)
+find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)
+target_link_libraries(survivor PRIVATE SFML::Graphics SFML::Window SFML::System)

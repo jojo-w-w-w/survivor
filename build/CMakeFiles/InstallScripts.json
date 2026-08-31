@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/jojo/projects/survivor/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -3,17 +3,15 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
-Bullet::Bullet() : Bullet_speed(400.f), active(false)//只有玩家存活时才有子弹
+Bullet::Bullet() : sprite(texture), Bullet_speed(400.f), active(false)//只有玩家存活时才有子弹
 {
     if(!texture.loadFromFile("assets/bullet.png"))
     {
         std::cerr << "Faild to load bullet txture" << std::endl;
     }
-    sprite.setTexture(texture);
-
+    
     sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);                 //设置子弹的中心
-
+    sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});//设置子弹的中心
 }
 
 void Bullet::launch(sf::Vector2f startPos, sf::Vector2f direction, float bulletSpeed)

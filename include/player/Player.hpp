@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "ResourceManager.hpp"
+#include "MenuState.hpp"
+#include "PlayingState.hpp"
 
 struct Upgrade;
 
@@ -9,7 +11,8 @@ class Player
 public:
     //初始化玩家
     Player();                                      // 构造函数：初始化形状、速度等
-    void update(float dt);                         // 处理输入 + 移动
+    void update(float dt);                         // 处理动画、状态更新
+    void move(sf::Vector2f direction, float delta);// 处理移动
     void render(sf::RenderWindow& window) const;   // 绘制玩家
 
     //玩家状态
@@ -19,7 +22,7 @@ public:
     bool isDead() const;                            //判断玩家是否死亡
     void isDamage(int damage);                      //判断玩家是否受伤
 
-    void reset();                                   //重置玩家状态
+    void reset();                                   //重置玩家状态S
 
 //玩家行为:
 

@@ -1,45 +1,36 @@
 #include <iostream>
-#include "Player.hpp"
 #include <cmath>
 #include <SFML/Graphics.hpp>
+#include "Player.hpp"
+#include "MenuState.hpp"
+#include "PlayingState.hpp"
 
-Player::Player() : player_speed(200.f), maxHp(5),
+Player::Player() : texture(ResourceManager::getTexture("assets/player.png")), 
+                   sprite(*texture), player_speed(200.f), maxHp(5),
                    hp(5), shootTimer(0.f), shootCooldown(1.f),
                    bulletSpeed(400.f), bulletCount(1), exp(0), 
                    expToNextLevel(10), level(1), 
                    leveledUpThisFrame(false)
 {
-    texture = ResourceManager::getTexture("assets/player.png");
-    sprite.setTexture(*texture);
-
     sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-    sprite.setPosition(640.f, 360.f);//将玩家移动到窗口中心
+    sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});
+    sprite.setPosition({640.f, 360.f});//将玩家移动到窗口中心
 
 }
 
 void Player::update(float dt)
 {
-    sf::Vector2f direction(0.f, 0.f);
+    
+}
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        direction.y -= 1.f;
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        direction.x -= 1.f;
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        direction.y += 1.f;
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        direction.x += 1.f;
-
+void Player::move(sf::Vector2f direction, float delta)
+{
     float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
     if(length > 0)
         direction /= length;
         
-    sprite.move(direction * player_speed * dt);
+    sprite.move(direction * player_speed * delta);
 }
 
 void Player::render(sf::RenderWindow& window) const
@@ -94,8 +85,8 @@ void Player::reset()
     sprite.setTexture(*texture);
 
     sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-    sprite.setPosition(640.f, 360.f);//将玩家移动到窗口中心
+    sprite.setOrigin({bounds.size.x/ 2.f, bounds.size.x / 2.f});
+    sprite.setPosition({640.f, 360.f});//将玩家移动到窗口中心
 
 }
 

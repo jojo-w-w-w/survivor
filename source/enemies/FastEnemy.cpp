@@ -4,13 +4,10 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 
-FastEnemy::FastEnemy() : enemy_speed(150.f), active(true), expValue(10)
+FastEnemy::FastEnemy() : texture(ResourceManager::getTexture("assets/fastenemy.png")), sprite(*texture), enemy_speed(150.f), active(true), expValue(10)
 {
-    texture = ResourceManager::getTexture("assets/fastenemy.png");
-    sprite.setTexture(*texture);
-
     sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -45,12 +42,12 @@ FastEnemy::FastEnemy() : enemy_speed(150.f), active(true), expValue(10)
             break;
     }
 
-    sprite.setPosition(x, y);//设置敌人出现的初始位置
+    sprite.setPosition({x, y});//设置敌人出现的初始位置
 }
 
-void FastEnemy::update(float dt, sf::Vector2f playerPos)
+void FastEnemy::update(float dt, Player& player)
 {
-    sf::Vector2f direction = playerPos - sprite.getPosition();
+    sf::Vector2f direction = player.getPosition() - sprite.getPosition();
 
     float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
