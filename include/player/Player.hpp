@@ -31,11 +31,11 @@ public:
 
     //升级
     void addExp(int amount);
-    int getExp() const;
-    int getLevel() const;
+    int  getExp() const;
+    int  getLevel() const;
     bool justLevelUp();                            //检测上一帧是否升级
-    int getMaxHp() const { return maxHp; }
-    int getExpToNext() const { return expToNextLevel; }
+    int  getMaxHp() const { return maxHp; }
+    int  getExpToNext() const { return expToNextLevel; }
 
     //可以升级的部分
     void reduceShootCooldown(float factor) { shootCooldown *= factor; }

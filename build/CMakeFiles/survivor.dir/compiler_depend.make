@@ -2022,6 +2022,7 @@ CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: /home/jojo/projects/sur
   /usr/include/c++/15/bits/shared_ptr.h \
   /usr/include/c++/15/bits/shared_ptr_atomic.h \
   /usr/include/c++/15/bits/shared_ptr_base.h \
+  /usr/include/c++/15/bits/specfun.h \
   /usr/include/c++/15/bits/sstream.tcc \
   /usr/include/c++/15/bits/std_abs.h \
   /usr/include/c++/15/bits/stl_algobase.h \
@@ -2057,6 +2058,7 @@ CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: /home/jojo/projects/sur
   /usr/include/c++/15/cerrno \
   /usr/include/c++/15/chrono \
   /usr/include/c++/15/clocale \
+  /usr/include/c++/15/cmath \
   /usr/include/c++/15/codecvt \
   /usr/include/c++/15/compare \
   /usr/include/c++/15/concepts \
@@ -2102,6 +2104,18 @@ CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: /home/jojo/projects/sur
   /usr/include/c++/15/string \
   /usr/include/c++/15/string_view \
   /usr/include/c++/15/system_error \
+  /usr/include/c++/15/tr1/bessel_function.tcc \
+  /usr/include/c++/15/tr1/beta_function.tcc \
+  /usr/include/c++/15/tr1/ell_integral.tcc \
+  /usr/include/c++/15/tr1/exp_integral.tcc \
+  /usr/include/c++/15/tr1/gamma.tcc \
+  /usr/include/c++/15/tr1/hypergeometric.tcc \
+  /usr/include/c++/15/tr1/legendre_function.tcc \
+  /usr/include/c++/15/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/15/tr1/poly_hermite.tcc \
+  /usr/include/c++/15/tr1/poly_laguerre.tcc \
+  /usr/include/c++/15/tr1/riemann_zeta.tcc \
+  /usr/include/c++/15/tr1/special_function_util.h \
   /usr/include/c++/15/tuple \
   /usr/include/c++/15/type_traits \
   /usr/include/c++/15/typeinfo \
@@ -2121,6 +2135,7 @@ CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: /home/jojo/projects/sur
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
+  /usr/include/math.h \
   /usr/include/memory.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
@@ -2146,9 +2161,19 @@ CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: /home/jojo/projects/sur
   /usr/include/x86_64-linux-gnu/bits/errno.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -5706,28 +5731,7 @@ CMakeFiles/survivor.dir/source/player/Upgrade.cpp.o: /home/jojo/projects/survivo
   /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h
 
-survivor: /lib/x86_64-linux-gnu/libX11.so.6 \
-  /lib/x86_64-linux-gnu/libXau.so.6 \
-  /lib/x86_64-linux-gnu/libXcursor.so.1 \
-  /lib/x86_64-linux-gnu/libXdmcp.so.6 \
-  /lib/x86_64-linux-gnu/libXext.so.6 \
-  /lib/x86_64-linux-gnu/libXfixes.so.3 \
-  /lib/x86_64-linux-gnu/libXrandr.so.2 \
-  /lib/x86_64-linux-gnu/libXrender.so.1 \
-  /lib/x86_64-linux-gnu/libbrotlicommon.so.1 \
-  /lib/x86_64-linux-gnu/libbrotlidec.so.1 \
-  /lib/x86_64-linux-gnu/libbz2.so.1.0 \
-  /lib/x86_64-linux-gnu/libc.so.6 \
-  /lib/x86_64-linux-gnu/libcap.so.2 \
-  /lib/x86_64-linux-gnu/libfreetype.so.6 \
-  /lib/x86_64-linux-gnu/libm.so.6 \
-  /lib/x86_64-linux-gnu/libmvec.so.1 \
-  /lib/x86_64-linux-gnu/libpng16.so.16 \
-  /lib/x86_64-linux-gnu/libstb.so.0 \
-  /lib/x86_64-linux-gnu/libudev.so.1 \
-  /lib/x86_64-linux-gnu/libxcb.so.1 \
-  /lib/x86_64-linux-gnu/libz.so.1 \
-  /lib64/ld-linux-x86-64.so.2 \
+survivor: /lib64/ld-linux-x86-64.so.2 \
   /usr/lib/x86_64-linux-gnu/Scrt1.o \
   /usr/lib/x86_64-linux-gnu/crti.o \
   /usr/lib/x86_64-linux-gnu/crtn.o \
@@ -5739,12 +5743,39 @@ survivor: /lib/x86_64-linux-gnu/libX11.so.6 \
   /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
   /usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so \
+  /usr/lib/x86_64-linux-gnu/libX11.so.6 \
+  /usr/lib/x86_64-linux-gnu/libXau.so.6 \
+  /usr/lib/x86_64-linux-gnu/libXcursor.so.1 \
+  /usr/lib/x86_64-linux-gnu/libXdmcp.so.6 \
+  /usr/lib/x86_64-linux-gnu/libXext.so.6 \
+  /usr/lib/x86_64-linux-gnu/libXfixes.so.3 \
+  /usr/lib/x86_64-linux-gnu/libXi.so.6 \
+  /usr/lib/x86_64-linux-gnu/libXrandr.so.2 \
+  /usr/lib/x86_64-linux-gnu/libXrender.so.1 \
+  /usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1 \
+  /usr/lib/x86_64-linux-gnu/libbrotlidec.so.1 \
+  /usr/lib/x86_64-linux-gnu/libbz2.so.1.0 \
+  /usr/lib/x86_64-linux-gnu/libc.so.6 \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
-  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.2 \
-  /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.2 \
-  /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.2 \
+  /usr/lib/x86_64-linux-gnu/libfreetype.so.6 \
+  /usr/lib/x86_64-linux-gnu/libm.so.6 \
+  /usr/lib/x86_64-linux-gnu/libmvec.so.1 \
+  /usr/lib/x86_64-linux-gnu/libpng16.so.16 \
+  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.3.0.2 \
+  /usr/lib/x86_64-linux-gnu/libsfml-system.so.3.0.2 \
+  /usr/lib/x86_64-linux-gnu/libsfml-window.so.3.0.2 \
+  /usr/lib/x86_64-linux-gnu/libstb.so.0 \
+  /usr/lib/x86_64-linux-gnu/libudev.so.1 \
+  /usr/lib/x86_64-linux-gnu/libxcb.so.1 \
+  /usr/lib/x86_64-linux-gnu/libz.so.1 \
   CMakeFiles/survivor.dir/main.cpp.o \
   CMakeFiles/survivor.dir/source/ResourceManager.cpp.o \
+  CMakeFiles/survivor.dir/source/State/GameContext.cpp.o \
+  CMakeFiles/survivor.dir/source/State/MenuState.cpp.o \
+  CMakeFiles/survivor.dir/source/State/PauseState.cpp.o \
+  CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o \
+  CMakeFiles/survivor.dir/source/State/StateStack.cpp.o \
+  CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o \
   CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o \
   CMakeFiles/survivor.dir/source/enemies/Enemy.cpp.o \
   CMakeFiles/survivor.dir/source/enemies/EnemyBase.cpp.o \
@@ -5767,9 +5798,41 @@ CMakeFiles/survivor.dir/source/enemies/Enemy.cpp.o:
 
 CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o:
 
-/usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.2:
+CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o:
+
+CMakeFiles/survivor.dir/source/State/MenuState.cpp.o:
+
+CMakeFiles/survivor.dir/source/State/GameContext.cpp.o:
+
+/usr/lib/x86_64-linux-gnu/libz.so.1:
+
+/usr/lib/x86_64-linux-gnu/libstb.so.0:
+
+/usr/lib/x86_64-linux-gnu/libsfml-system.so.3.0.2:
+
+/usr/lib/x86_64-linux-gnu/libsfml-graphics.so.3.0.2:
+
+/usr/lib/x86_64-linux-gnu/libpng16.so.16:
+
+/usr/lib/x86_64-linux-gnu/libfreetype.so.6:
+
+/usr/lib/x86_64-linux-gnu/libc.so.6:
+
+/usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1:
+
+/usr/lib/x86_64-linux-gnu/libXrender.so.1:
+
+/usr/lib/x86_64-linux-gnu/libbz2.so.1.0:
+
+/usr/lib/x86_64-linux-gnu/libXi.so.6:
+
+/usr/lib/x86_64-linux-gnu/libXext.so.6:
 
 /usr/lib/x86_64-linux-gnu/libc_nonshared.a:
+
+/usr/lib/x86_64-linux-gnu/libXdmcp.so.6:
+
+/usr/lib/x86_64-linux-gnu/libX11.so.6:
 
 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1:
 
@@ -5780,24 +5843,6 @@ CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o:
 /usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so:
 
 /lib64/ld-linux-x86-64.so.2:
-
-/lib/x86_64-linux-gnu/libxcb.so.1:
-
-/lib/x86_64-linux-gnu/libfreetype.so.6:
-
-/lib/x86_64-linux-gnu/libbz2.so.1.0:
-
-/lib/x86_64-linux-gnu/libbrotlicommon.so.1:
-
-/lib/x86_64-linux-gnu/libXrender.so.1:
-
-/lib/x86_64-linux-gnu/libXfixes.so.3:
-
-/lib/x86_64-linux-gnu/libudev.so.1:
-
-/lib/x86_64-linux-gnu/libXcursor.so.1:
-
-/lib/x86_64-linux-gnu/libX11.so.6:
 
 /home/jojo/projects/survivor/source/player/Player.cpp:
 
@@ -5817,9 +5862,13 @@ CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o:
 
 /home/jojo/projects/survivor/source/State/PlayingState.cpp:
 
+/usr/lib/x86_64-linux-gnu/libXcursor.so.1:
+
 /home/jojo/projects/survivor/source/State/PauseState.cpp:
 
 /home/jojo/projects/survivor/source/State/GameContext.cpp:
+
+CMakeFiles/survivor.dir/source/State/StateStack.cpp.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h:
 
@@ -5834,8 +5883,6 @@ CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o:
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/messages_members.h:
-
-/usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.2:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/error_constants.h:
 
@@ -5856,6 +5903,8 @@ CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o:
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
@@ -5943,13 +5992,9 @@ CMakeFiles/survivor.dir/source/enemies/Boss.cpp.o:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
-/lib/x86_64-linux-gnu/libXext.so.6:
-
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/time.h:
-
-/lib/x86_64-linux-gnu/libmvec.so.1:
 
 /usr/include/stdlib.h:
 
@@ -5962,8 +6007,6 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 /usr/include/wctype.h:
 
 /usr/include/sched.h:
-
-/lib/x86_64-linux-gnu/libz.so.1:
 
 /usr/include/pthread.h:
 
@@ -6003,8 +6046,6 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 
 /usr/include/c++/15/tr1/hypergeometric.tcc:
 
-/lib/x86_64-linux-gnu/libXdmcp.so.6:
-
 /usr/include/c++/15/tr1/gamma.tcc:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
@@ -6033,8 +6074,6 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 
 /usr/include/c++/15/ext/atomicity.h:
 
-/lib/x86_64-linux-gnu/libm.so.6:
-
 /usr/include/c++/15/bits/char_traits.h:
 
 /usr/include/c++/15/bits/cxxabi_init_exception.h:
@@ -6047,8 +6086,6 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 
 /usr/include/c++/15/map:
 
-/lib/x86_64-linux-gnu/libpng16.so.16:
-
 /usr/include/c++/15/bits/atomic_lockfree_defines.h:
 
 /usr/include/c++/15/bits/atomic_base.h:
@@ -6060,8 +6097,6 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 /usr/include/math.h:
 
 /usr/include/SFML/Graphics/Transform.hpp:
-
-/lib/x86_64-linux-gnu/libXrandr.so.2:
 
 /usr/include/asm-generic/errno-base.h:
 
@@ -6088,6 +6123,8 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 /usr/include/linux/types.h:
 
 /usr/include/SFML/Window/Keyboard.hpp:
+
+CMakeFiles/survivor.dir/source/State/PauseState.cpp.o:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/gthr.h:
 
@@ -6125,13 +6162,11 @@ CMakeFiles/survivor.dir/source/enemies/EnemyFactory.cpp.o:
 
 /usr/include/SFML/Window/ContextSettings.hpp:
 
-/lib/x86_64-linux-gnu/libc.so.6:
+/usr/lib/x86_64-linux-gnu/libxcb.so.1:
 
 /usr/include/c++/15/memory:
 
 /usr/include/SFML/Window/Clipboard.hpp:
-
-/lib/x86_64-linux-gnu/libstb.so.0:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/cpu_defines.h:
 
@@ -6207,6 +6242,8 @@ CMakeFiles/survivor.dir/main.cpp.o:
 
 /usr/include/SFML/Graphics/Export.hpp:
 
+/usr/lib/x86_64-linux-gnu/libXau.so.6:
+
 /usr/include/SFML/Graphics/Sprite.hpp:
 
 /usr/include/c++/15/bits/allocator.h:
@@ -6216,8 +6253,6 @@ CMakeFiles/survivor.dir/main.cpp.o:
 /usr/include/c++/15/bit:
 
 /usr/include/SFML/Graphics/ConvexShape.hpp:
-
-/lib/x86_64-linux-gnu/libbrotlidec.so.1:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/ctype_base.h:
 
@@ -6264,6 +6299,8 @@ CMakeFiles/survivor.dir/main.cpp.o:
 /usr/include/SFML/System.hpp:
 
 /usr/include/SFML/Graphics/Color.hpp:
+
+/usr/lib/x86_64-linux-gnu/libsfml-window.so.3.0.2:
 
 /usr/include/c++/15/tr1/exp_integral.tcc:
 
@@ -6373,11 +6410,15 @@ CMakeFiles/survivor.dir/main.cpp.o:
 
 /usr/include/c++/15/bits/unordered_map.h:
 
+/usr/lib/x86_64-linux-gnu/libm.so.6:
+
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/c++/15/bits/basic_ios.h:
 
 /usr/include/SFML/Graphics/StencilMode.hpp:
+
+/usr/lib/x86_64-linux-gnu/libudev.so.1:
 
 /usr/include/linux/posix_types.h:
 
@@ -6403,8 +6444,6 @@ CMakeFiles/survivor.dir/main.cpp.o:
 
 /usr/include/c++/15/bits/allocated_ptr.h:
 
-/lib/x86_64-linux-gnu/libXau.so.6:
-
 /usr/include/c++/15/bits/monostate.h:
 
 /usr/include/SFML/System/Clock.hpp:
@@ -6412,6 +6451,8 @@ CMakeFiles/survivor.dir/main.cpp.o:
 /usr/include/c++/15/bits/enable_special_members.h:
 
 /usr/include/c++/15/bits/stl_tree.h:
+
+/usr/lib/x86_64-linux-gnu/libXfixes.so.3:
 
 /usr/include/SFML/System/Angle.inl:
 
@@ -6565,6 +6606,8 @@ CMakeFiles/survivor.dir/source/ResourceManager.cpp.o:
 
 /usr/include/c++/15/compare:
 
+/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1:
+
 /usr/include/c++/15/bits/fs_dir.h:
 
 /usr/include/c++/15/bits/stl_function.h:
@@ -6572,6 +6615,8 @@ CMakeFiles/survivor.dir/source/ResourceManager.cpp.o:
 /usr/include/SFML/Graphics/BlendMode.hpp:
 
 /usr/include/c++/15/cwchar:
+
+/usr/lib/x86_64-linux-gnu/libmvec.so.1:
 
 /usr/include/c++/15/bits/stl_iterator_base_types.h:
 
@@ -6610,8 +6655,6 @@ CMakeFiles/survivor.dir/source/ResourceManager.cpp.o:
 /usr/include/c++/15/bits/streambuf.tcc:
 
 /usr/include/c++/15/cassert:
-
-/lib/x86_64-linux-gnu/libcap.so.2:
 
 /usr/include/c++/15/bits/string_view.tcc:
 
@@ -6655,6 +6698,8 @@ CMakeFiles/survivor.dir/source/player/Player.cpp.o:
 
 /usr/include/c++/15/iosfwd:
 
+/usr/lib/x86_64-linux-gnu/libXrandr.so.2:
+
 /usr/include/x86_64-linux-gnu/c++/15/bits/gthr-default.h:
 
 /usr/include/c++/15/limits:
@@ -6664,8 +6709,6 @@ CMakeFiles/survivor.dir/source/player/Player.cpp.o:
 /usr/include/c++/15/iostream:
 
 /usr/include/c++/15/istream:
-
-/usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.2:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 

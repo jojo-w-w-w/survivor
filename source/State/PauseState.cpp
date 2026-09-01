@@ -16,7 +16,7 @@ window(window), stack(stack), context(context), titleText(font), ContinueText(fo
     titleText.setString("PAUSED");
     titleText.setCharacterSize(60);
     titleText.setFillColor(sf::Color::White);
-    titleText.setPosition({400.f, 100.f});
+    titleText.setPosition({480.f, 100.f});
 
     //继续游戏按钮
     ContinueButton.setSize(sf::Vector2f({300.f, 80.f}));
@@ -29,7 +29,7 @@ window(window), stack(stack), context(context), titleText(font), ContinueText(fo
     //自动使文本居中
     sf::FloatRect ContinueTextBounds = ContinueText.getLocalBounds();
     ContinueText.setOrigin({ContinueTextBounds.position.x + ContinueTextBounds.size.x / 2.f, ContinueTextBounds.position.y + ContinueTextBounds.size.y / 2.f});
-    ContinueText.setPosition({ContinueButton.getPosition().x + ContinueButton.getPosition().x / 2.f, ContinueButton.getPosition().y + ContinueButton.getPosition().y / 2.f});
+    ContinueText.setPosition({ContinueButton.getPosition().x + ContinueButton.getSize().x / 2.f, ContinueButton.getPosition().y + ContinueButton.getSize().y / 2.f});
 
     //退出游戏按钮
     QuitButton.setSize(sf::Vector2f({300.f, 80.f}));
@@ -42,7 +42,7 @@ window(window), stack(stack), context(context), titleText(font), ContinueText(fo
     //自动使文本居中
     sf::FloatRect QuitTextBounds = QuitText.getLocalBounds();
     QuitText.setOrigin({QuitTextBounds.position.x + QuitTextBounds.size.x / 2.f, QuitTextBounds.position.y + QuitTextBounds.size.y / 2.f});
-    QuitText.setPosition({QuitButton.getPosition().x + QuitButton.getPosition().x / 2.f, QuitButton.getPosition().y + QuitButton.getPosition().y / 2.f});
+    QuitText.setPosition({QuitButton.getPosition().x + QuitButton.getSize().x / 2.f, QuitButton.getPosition().y + QuitButton.getSize().y / 2.f});
 }
 
 PauseState::~PauseState() = default;

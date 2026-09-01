@@ -10,6 +10,9 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
     {
         std::cerr << "Failed to load StartBackground texture!" << std::endl;
     }
+
+    //重新绑定图片资源
+    MenuBgSprite.setTexture(MenuBgTexture, true);
     
     const sf::FloatRect bgBounds = MenuBgSprite.getLocalBounds();
 
@@ -28,7 +31,7 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
     titleText.setString("RougeLike");
     titleText.setCharacterSize(60);
     titleText.setFillColor(sf::Color::White);
-    titleText.setPosition({200.f, 150.f});
+    titleText.setPosition({480.f, 150.f});
 
     //开始游戏按钮
     startButton.setSize(sf::Vector2f(300.f, 80.f));
@@ -41,7 +44,7 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
     //自动使文本居中
     sf::FloatRect StartTextBounds = StartText.getLocalBounds();
     StartText.setOrigin({StartTextBounds.position.x + StartTextBounds.size.x / 2, StartTextBounds.position.y + StartTextBounds.size.y / 2});
-    StartText.setPosition({startButton.getPosition().x + startButton.getPosition().x / 2, startButton.getPosition().y + startButton.getPosition().y / 2});
+    StartText.setPosition({startButton.getPosition().x + startButton.getSize().x / 2, startButton.getPosition().y + startButton.getSize().y / 2});
 
     //退出游戏按钮
     QuitButton.setSize(sf::Vector2f(300.f, 80.f));
@@ -54,7 +57,7 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
     //自动使文本居中
     sf::FloatRect QuitTextBounds = QuitText.getLocalBounds();
     QuitText.setOrigin({QuitTextBounds.position.x + QuitTextBounds.size.x / 2, QuitTextBounds.position.y + QuitTextBounds.size.y / 2});
-    QuitText.setPosition({QuitButton.getPosition().x + QuitButton.getPosition().x / 2, QuitButton.getPosition().y + QuitButton.getPosition().y / 2});
+    QuitText.setPosition({QuitButton.getPosition().x + QuitButton.getSize().x / 2, QuitButton.getPosition().y + QuitButton.getSize().y / 2});
 }
 
 MenuState::~MenuState() = default;

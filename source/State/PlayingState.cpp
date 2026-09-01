@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cmath>
 #include "PlayingState.hpp"
 #include "EnemyFactory.hpp"
 #include "UpgradingState.hpp"
@@ -13,6 +14,9 @@ window(window), stack(stack), context(context), PlayingBgSprite(PlayingBgTexture
         std::cerr << "Failed to load background texture!" << std::endl;
     }
     
+    //重新绑定图片资源
+    PlayingBgSprite.setTexture(PlayingBgTexture, true);
+
     const sf::FloatRect bgBounds = PlayingBgSprite.getLocalBounds();
 
     PlayingBgSprite.setScale
@@ -103,8 +107,74 @@ void PlayingState::update(sf::Time delta)
         enemy->update(dt, *context.player);
     }
 
-    //子弹移动
+    //子弹发射逻辑
+    //如果玩家此时可以发射子弹
+    if(context.player->canshoot(dt))
+    {
+        //遍历所有活着的敌人找到最近的
+        const EnemyBase* nearstEnemy = nullptr;
+        float minDistance = std::numeric_limits<float>::max();//将最小距离初始化为极大值方便更新
+        for(const auto& enemy : context.enemies)
+        {
+            //如果敌人死亡就跳过
+            if(!enemy->isActive())
+                continue;
 
+            //获得该敌人与玩家之间的坐标差，为了下面计算该敌人与玩家之间的距离
+            sf::Vector2f diff = enemy->getPosition() - context.player->getPosition();
+
+            //计算该敌人与玩家之间的距离
+            float dist = std::sqrt(diff.x * diff.x + diff.y * diff.y);
+
+            //更新最小距离
+            if(dist < minDistance)
+            {
+                minDistance = dist;
+                nearstEnemy = enemy.get();//更新最近敌人指针
+            }
+        }
+        //  && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)
+        //如果找到敌人并按下 J 就发射子弹
+        if(nearstEnemy != nullptr)
+        {
+            sf::Vector2f direction = nearstEnemy->getPosition() - context.player->getPosition();
+            float len = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+
+            if(len > 0)
+                direction /= len;//归一化
+
+            // 基础方向角度
+            float baseAngle = std::atan2(direction.y, direction.x);
+
+            float spread = 0.15f;  // 散射弧度，约 8.6 度
+
+            int bulletCount = context.player->getBulletCount();   // 需要添加这个公有方法
+            for (int i = 0; i < bulletCount; ++i) 
+            {
+                float angle = baseAngle;
+                if (bulletCount > 1) 
+                {
+                    float offset = spread * (i - (bulletCount - 1.0f) / 2.0f);
+                    angle += offset;
+                }
+            
+                sf::Vector2f bulletDir(std::cos(angle), std::sin(angle));
+
+                context.bullets.push_back(std::make_unique<Bullet>());                                 //向子弹数组里添加子弹
+                context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活
+            }
+            
+        }
+    }
+
+    //更新所有子弹的状态
+    for (auto& bullet : context.bullets)
+    {
+        if (bullet->isActive())
+        {
+            bullet->update(dt);
+        }
+    }
 
     //碰撞检测:
     //敌人与子弹的碰撞检测
