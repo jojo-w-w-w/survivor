@@ -62,7 +62,8 @@ void UpgradingState::handleInput(const sf::Event& event)
         if(choice >= 0 && choice < UpgradeOption.size()) 
         {
             UpgradeOption[choice].apply(*context.player);  // 应用升级效果
-            stack.changeState(std::make_unique<PlayingState>(window, stack, context));
+            //升级结束切换至游玩状态
+            stack.popState();
             //UpgradeOption.clear();
         }
     }

@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 #include "PlayingState.hpp"
 #include "EnemyFactory.hpp"
 #include "UpgradingState.hpp"
@@ -64,6 +65,16 @@ window(window), stack(stack), context(context), PlayingBgSprite(PlayingBgTexture
 
 PlayingState::~PlayingState() = default;
 
+void PlayingState::spawnEnemy()
+{
+    auto enemy = EnemyFactory::creatRandom();
+
+    if (enemy)
+    {
+        context.enemies.push_back(std::move(enemy));
+    }
+}
+
 void PlayingState::handleInput(const sf::Event& event)
 {
     if(const auto* keyPressed = event.getIf<sf::Event::KeyPressed>())
@@ -71,7 +82,7 @@ void PlayingState::handleInput(const sf::Event& event)
         //按下 ESC 切换至暂停状态
         if(keyPressed->code == sf::Keyboard::Key::Escape)
         {
-            stack.changeState(std::make_unique<PauseState>(window, stack, context));
+            stack.pushState(std::make_unique<PauseState>(window, stack, context));
         }
     }
    
@@ -80,8 +91,18 @@ void PlayingState::handleInput(const sf::Event& event)
 
 void PlayingState::update(sf::Time delta)
 {
-    //处理玩家移动
     float dt = delta.asSeconds();
+    
+    // 敌人生成计时器
+    enemySpawnTimer += dt;
+
+    if (enemySpawnTimer >= enemySpawnInterval)
+    {
+        enemySpawnTimer -= enemySpawnInterval;
+        spawnEnemy();
+    }
+
+    //处理玩家移动
     sf::Vector2f direction(0.f, 0.f);
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -111,6 +132,7 @@ void PlayingState::update(sf::Time delta)
     //如果玩家此时可以发射子弹
     if(context.player->canshoot(dt))
     {
+
         //遍历所有活着的敌人找到最近的
         const EnemyBase* nearstEnemy = nullptr;
         float minDistance = std::numeric_limits<float>::max();//将最小距离初始化为极大值方便更新
@@ -133,6 +155,7 @@ void PlayingState::update(sf::Time delta)
                 nearstEnemy = enemy.get();//更新最近敌人指针
             }
         }
+
         //  && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)
         //如果找到敌人并按下 J 就发射子弹
         if(nearstEnemy != nullptr)
@@ -149,6 +172,7 @@ void PlayingState::update(sf::Time delta)
             float spread = 0.15f;  // 散射弧度，约 8.6 度
 
             int bulletCount = context.player->getBulletCount();   // 需要添加这个公有方法
+
             for (int i = 0; i < bulletCount; ++i) 
             {
                 float angle = baseAngle;
@@ -161,9 +185,8 @@ void PlayingState::update(sf::Time delta)
                 sf::Vector2f bulletDir(std::cos(angle), std::sin(angle));
 
                 context.bullets.push_back(std::make_unique<Bullet>());                                 //向子弹数组里添加子弹
-                context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活
-            }
-            
+                context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活            
+           }    
         }
     }
 
@@ -194,9 +217,9 @@ void PlayingState::update(sf::Time delta)
             //如果子弹的边框与敌人的边框相交
             if(bullet->getBound().findIntersection(enemy->getBound()).has_value())
             {
+                context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
                 bullet->deActive();//子弹消失
                 enemy->deActive();//敌人消失
-                context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
                 break;
             }
         }
@@ -210,9 +233,10 @@ void PlayingState::update(sf::Time delta)
         //如果玩家与敌人发生碰撞
         if(context.player->getBound().findIntersection(enemy->getBound()).has_value())
         {
+            context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
             enemy->deActive();//敌人消失
             context.player->isDamage(1);//玩家受到伤害
-            context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
+            
         }
 
         //如果玩家死亡，则游戏结束
@@ -226,10 +250,21 @@ void PlayingState::update(sf::Time delta)
         }
     }
 
+    //碰撞检测结束清理容器中死亡的敌人
+    context.enemies.erase
+    (
+        std::remove_if(context.enemies.begin(),context.enemies.end(),
+            [](const auto& enemy)
+            {
+                return !enemy || !enemy->isActive();
+            }),
+            context.enemies.end()
+    );
+
     //如果经验条满了，切换至更新状态
     if(context.player->justLevelUp())
     {
-        stack.changeState(std::make_unique<UpgradingState>(window, stack, context));
+        stack.pushState(std::make_unique<UpgradingState>(window, stack, context));
     }
 
     //更新HUD

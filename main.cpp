@@ -35,16 +35,6 @@ int main()
 
     sf::Clock clock;
 
-    Player player;                              //先创建一个玩家对象
-    
-    //创建敌人容器
-    std::vector<std::unique_ptr<EnemyBase>> enemies;
-    float spawnTimer = 0.f;                     //生成敌人的时间
-    const float spawnInterval = 2.f;            //每两秒生成一个敌人
-
-    //创建子弹容器
-    std::vector<std::unique_ptr<Bullet>> bullets;
-
     while(window.isOpen())
     {
         // 事件处理
@@ -63,63 +53,4 @@ int main()
     }
     std::cout << "Game Over!" << std::endl;
     return 0;
-
-    // while (window.isOpen())//渲染事件
-    // {
-	//     sf::Time dt = clock.restart();
-	//     float deltaTime = dt.asSeconds();
-
-   
-            
-    //         // 菜单状态下检测鼠标点击
-    //         if (gamestate == Gamestate::Menu && event.type == sf::Event::MouseButtonPressed) 
-    //         {
-    //             if (event.mouseButton.button == sf::Mouse::Left) 
-    //             {
-    //                 sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-    //                 if (startButton.getGlobalBounds().contains(mousePos)) 
-    //                 {
-    //                     // 切换到游戏状态，并重置游戏数据
-    //                     gamestate = Gamestate::Playing;
-    //                     player.reset();
-    //                     enemies.clear();
-    //                     bullets.clear();
-    //                     spawnTimer = 0.f;
-    //                 }
-    //             }
-    //         } 
-
-    //         //敌人生成
-    //         spawnTimer += deltaTime;
-    //         if(spawnTimer >= spawnInterval)
-    //         {
-    //             spawnTimer = 0.f;
-    //             enemies.push_back(EnemyFactory::creatRandom());
-    //         }
-
-    //         //更新所有敌人
-    //         for(auto& enemy : enemies)
-    //         {
-    //             enemy->update(deltaTime, player.getPosition());
-    //         }
-
-    //         //更新所有子弹
-    //         for(auto& bullet : bullets)
-    //         {
-    //             if(bullet->isActive())
-    //             {
-    //                 bullet->update(deltaTime);
-    //             }
-    //         }
-                    
-    //         //清理失效的子弹
-    //         bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const std::unique_ptr<Bullet>&b)
-    //         {
-    //             return !b->isActive();
-    //         }), bullets.end());
-
-  
-    //     window.clear(sf::Color::Black);        
-    //     window.display();
-    // }
 }

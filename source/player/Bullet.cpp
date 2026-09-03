@@ -10,6 +10,9 @@ Bullet::Bullet() : sprite(texture), Bullet_speed(400.f), active(false)//只有�
         std::cerr << "Faild to load bullet txture" << std::endl;
     }
     
+    // 纹理加载后重新绑定
+    sprite.setTexture(texture, true);
+
     sf::FloatRect bounds = sprite.getLocalBounds();
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});//设置子弹的中心
 }

@@ -60,16 +60,8 @@ void PauseState::handleInput(const sf::Event& event)
             //当点击 Continue 时切换状态至游玩
             if(ContinueButton.getGlobalBounds().contains(mousePos))
             {
-                //这个地方的逻辑暂时使用开始游戏时的逻辑
-                //实际上继续时应该从暂停的时刻开始
-                //****************************************** 
-
-                //游戏准备切换至游玩时创建玩家
-                context.player = std::make_unique<Player>();
-                //清除之前的敌人
-                context.enemies.clear();
-                //切换游戏状态
-                stack.changeState(std::make_unique<PlayingState>(window, stack, context));
+                //切换至游戏状态
+                stack.popState();
             }
             //当点击 Quit 时退出至菜单界面
             if(QuitButton.getGlobalBounds().contains(mousePos))

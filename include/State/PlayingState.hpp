@@ -12,6 +12,9 @@ public:
     PlayingState(sf::RenderWindow& window, StateStack& stack, GameContext& context);
     ~PlayingState() override;
 
+    //生成敌人
+    void spawnEnemy();
+
     void handleInput(const sf::Event& event) override;
     void update(sf::Time delta) override;
     void render() override;
@@ -38,5 +41,7 @@ private:
 
     sf::Text levelText;
     
-    
+    //游玩时的敌人生成
+    float enemySpawnTimer{0.f};
+    float enemySpawnInterval{1.f};//每秒生成一只
 };
