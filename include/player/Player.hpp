@@ -71,7 +71,6 @@ private:
     int exp;
     int expToNextLevel;
     int level;
-    bool leveledUpThisFrame;                        //标记当前帧是否升级 
+    int pendingLevelUps{0};                         //标记需要处理的升级次数
 
-       
 };

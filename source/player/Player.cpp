@@ -10,7 +10,7 @@ Player::Player() : texture(ResourceManager::getTexture("assets/player.png")),
                    hp(5), shootTimer(0.f), shootCooldown(1.f),
                    bulletSpeed(400.f), bulletCount(1), exp(0), 
                    expToNextLevel(10), level(1), 
-                   leveledUpThisFrame(false)
+                   pendingLevelUps(0)
 {
     sf::FloatRect bounds = sprite.getLocalBounds();
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});
@@ -79,7 +79,7 @@ void Player::reset()
     exp = 0;
     expToNextLevel = 10;
     level = 1;
-    leveledUpThisFrame = false;
+    pendingLevelUps = 0;
     
     texture = ResourceManager::getTexture("assets/player.png");
     sprite.setTexture(*texture);
@@ -111,7 +111,7 @@ void Player::addExp(int amount)
         level++;
         //下一次升级所需求的经验值增长
         expToNextLevel = static_cast<int>(expToNextLevel * 1.3f);
-        leveledUpThisFrame = true;
+        ++pendingLevelUps;
     }
 }
 
@@ -127,9 +127,9 @@ int Player::getLevel() const
 
 bool Player::justLevelUp()
 {
-    if(leveledUpThisFrame)
+    if(pendingLevelUps > 0)
     {
-        leveledUpThisFrame = false;
+        --pendingLevelUps;
         return true;
     }
     return false;

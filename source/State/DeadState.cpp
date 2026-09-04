@@ -64,6 +64,8 @@ void DeadState::handleInput(const sf::Event& event)
                 context.player = std::make_unique<Player>();
                 //清除之前的敌人
                 context.enemies.clear();
+                //清除之前的子弹
+                context.bullets.clear();
                 //切换游戏状态
                 stack.changeState(std::make_unique<PlayingState>(window, stack, context));
             }
