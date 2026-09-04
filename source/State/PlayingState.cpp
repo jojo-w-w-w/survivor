@@ -3,6 +3,7 @@
 #include <cmath>
 #include <algorithm>
 #include "PlayingState.hpp"
+#include "DeadState.hpp"
 #include "EnemyFactory.hpp"
 #include "UpgradingState.hpp"
 
@@ -54,7 +55,7 @@ window(window), stack(stack), context(context), PlayingBgSprite(PlayingBgTexture
     expBar.setPosition({20.f, 50.f});
     //下一级文本
     levelText.setString("Level : 1");
-    levelText.setCharacterSize(222);
+    levelText.setCharacterSize(22);
     levelText.setFillColor(sf::Color::White);
     levelText.setPosition({20.f, 75.f});
     
@@ -155,10 +156,9 @@ void PlayingState::update(sf::Time delta)
                 nearstEnemy = enemy.get();//更新最近敌人指针
             }
         }
-
-        //  && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)
-        //如果找到敌人并按下 J 就发射子弹
-        if(nearstEnemy != nullptr)
+        
+        //如果找到敌人就发射子弹
+        if(nearstEnemy != nullptr && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J))
         {
             sf::Vector2f direction = nearstEnemy->getPosition() - context.player->getPosition();
             float len = std::sqrt(direction.x * direction.x + direction.y * direction.y);
@@ -235,18 +235,7 @@ void PlayingState::update(sf::Time delta)
         {
             context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
             enemy->deActive();//敌人消失
-            context.player->isDamage(1);//玩家受到伤害
-            
-        }
-
-        //如果玩家死亡，则游戏结束
-        if(context.player->isDead())
-        {
-            //切换至死亡界面
-
-            //输出死亡文本
-            std::cout << "You Died!" << std::endl;
-            window.close();
+            context.player->isDamage(1);//玩家受到伤害 
         }
     }
 
@@ -260,6 +249,24 @@ void PlayingState::update(sf::Time delta)
             }),
             context.enemies.end()
     );
+
+    //碰撞检测结束清理容器中失效的子弹
+    context.bullets.erase
+    (
+        std::remove_if(context.bullets.begin(),context.bullets.end(),
+            [](const auto& bullet)
+            {
+                return !bullet || !bullet->isActive();
+            }),
+            context.bullets.end()
+    );
+
+    //如果玩家死亡，则游戏结束
+    if(context.player->isDead())
+    {
+        //切换至死亡界面
+        stack.changeState(std::make_unique<DeadState>(window, stack, context));
+    }
 
     //如果经验条满了，切换至更新状态
     if(context.player->justLevelUp())

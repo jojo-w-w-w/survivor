@@ -177,6 +177,30 @@ source/ResourceManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/source/ResourceManager.cpp.s
 .PHONY : source/ResourceManager.cpp.s
 
+source/State/DeadState.o: source/State/DeadState.cpp.o
+.PHONY : source/State/DeadState.o
+
+# target to build an object file
+source/State/DeadState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/source/State/DeadState.cpp.o
+.PHONY : source/State/DeadState.cpp.o
+
+source/State/DeadState.i: source/State/DeadState.cpp.i
+.PHONY : source/State/DeadState.i
+
+# target to preprocess a source file
+source/State/DeadState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/source/State/DeadState.cpp.i
+.PHONY : source/State/DeadState.cpp.i
+
+source/State/DeadState.s: source/State/DeadState.cpp.s
+.PHONY : source/State/DeadState.s
+
+# target to generate assembly for a file
+source/State/DeadState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/source/State/DeadState.cpp.s
+.PHONY : source/State/DeadState.cpp.s
+
 source/State/GameContext.o: source/State/GameContext.cpp.o
 .PHONY : source/State/GameContext.o
 
@@ -528,6 +552,9 @@ help:
 	@echo "... source/ResourceManager.o"
 	@echo "... source/ResourceManager.i"
 	@echo "... source/ResourceManager.s"
+	@echo "... source/State/DeadState.o"
+	@echo "... source/State/DeadState.i"
+	@echo "... source/State/DeadState.s"
 	@echo "... source/State/GameContext.o"
 	@echo "... source/State/GameContext.i"
 	@echo "... source/State/GameContext.s"

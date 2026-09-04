@@ -85,7 +85,7 @@ void Player::reset()
     sprite.setTexture(*texture);
 
     sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin({bounds.size.x/ 2.f, bounds.size.x / 2.f});
+    sprite.setOrigin({bounds.size.x/ 2.f, bounds.size.y / 2.f});
     sprite.setPosition({640.f, 360.f});//将玩家移动到窗口中心
 
 }
@@ -105,7 +105,7 @@ bool Player::canshoot(float dt)
 void Player::addExp(int amount)
 {
     exp += amount;
-    if(exp >= expToNextLevel)
+    while(exp >= expToNextLevel)
     {
         exp -= expToNextLevel;
         level++;

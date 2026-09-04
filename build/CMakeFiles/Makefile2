@@ -85,12 +85,12 @@ clean: CMakeFiles/survivor.dir/clean
 CMakeFiles/survivor.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target survivor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Built target survivor"
 .PHONY : CMakeFiles/survivor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/survivor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jojo/projects/survivor/build/CMakeFiles 17
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jojo/projects/survivor/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/survivor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jojo/projects/survivor/build/CMakeFiles 0
 .PHONY : CMakeFiles/survivor.dir/rule
@@ -102,7 +102,7 @@ survivor: CMakeFiles/survivor.dir/rule
 # codegen rule for target.
 CMakeFiles/survivor.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/survivor.dir/build.make CMakeFiles/survivor.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Finished codegen for target survivor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18 "Finished codegen for target survivor"
 .PHONY : CMakeFiles/survivor.dir/codegen
 
 # clean rule for target.

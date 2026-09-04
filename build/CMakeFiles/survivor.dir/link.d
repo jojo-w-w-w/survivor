@@ -11,6 +11,7 @@ survivor: \
   CMakeFiles/survivor.dir/source/player/Player.cpp.o \
   CMakeFiles/survivor.dir/source/player/Upgrade.cpp.o \
   CMakeFiles/survivor.dir/source/ResourceManager.cpp.o \
+  CMakeFiles/survivor.dir/source/State/DeadState.cpp.o \
   CMakeFiles/survivor.dir/source/State/GameContext.cpp.o \
   CMakeFiles/survivor.dir/source/State/MenuState.cpp.o \
   CMakeFiles/survivor.dir/source/State/PauseState.cpp.o \
@@ -90,6 +91,8 @@ CMakeFiles/survivor.dir/source/player/Player.cpp.o:
 CMakeFiles/survivor.dir/source/player/Upgrade.cpp.o:
 
 CMakeFiles/survivor.dir/source/ResourceManager.cpp.o:
+
+CMakeFiles/survivor.dir/source/State/DeadState.cpp.o:
 
 CMakeFiles/survivor.dir/source/State/GameContext.cpp.o:
 

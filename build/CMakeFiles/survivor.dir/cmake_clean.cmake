@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/survivor.dir/main.cpp.o.d"
   "CMakeFiles/survivor.dir/source/ResourceManager.cpp.o"
   "CMakeFiles/survivor.dir/source/ResourceManager.cpp.o.d"
+  "CMakeFiles/survivor.dir/source/State/DeadState.cpp.o"
+  "CMakeFiles/survivor.dir/source/State/DeadState.cpp.o.d"
   "CMakeFiles/survivor.dir/source/State/GameContext.cpp.o"
   "CMakeFiles/survivor.dir/source/State/GameContext.cpp.o.d"
   "CMakeFiles/survivor.dir/source/State/MenuState.cpp.o"

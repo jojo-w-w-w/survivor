@@ -198,10 +198,24 @@ CMakeFiles/survivor.dir/source/ResourceManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/survivor.dir/source/ResourceManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jojo/projects/survivor/source/ResourceManager.cpp -o CMakeFiles/survivor.dir/source/ResourceManager.cpp.s
 
+CMakeFiles/survivor.dir/source/State/DeadState.cpp.o: CMakeFiles/survivor.dir/flags.make
+CMakeFiles/survivor.dir/source/State/DeadState.cpp.o: /home/jojo/projects/survivor/source/State/DeadState.cpp
+CMakeFiles/survivor.dir/source/State/DeadState.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/survivor.dir/source/State/DeadState.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/DeadState.cpp.o -MF CMakeFiles/survivor.dir/source/State/DeadState.cpp.o.d -o CMakeFiles/survivor.dir/source/State/DeadState.cpp.o -c /home/jojo/projects/survivor/source/State/DeadState.cpp
+
+CMakeFiles/survivor.dir/source/State/DeadState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/survivor.dir/source/State/DeadState.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jojo/projects/survivor/source/State/DeadState.cpp > CMakeFiles/survivor.dir/source/State/DeadState.cpp.i
+
+CMakeFiles/survivor.dir/source/State/DeadState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/survivor.dir/source/State/DeadState.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jojo/projects/survivor/source/State/DeadState.cpp -o CMakeFiles/survivor.dir/source/State/DeadState.cpp.s
+
 CMakeFiles/survivor.dir/source/State/GameContext.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/source/State/GameContext.cpp.o: /home/jojo/projects/survivor/source/State/GameContext.cpp
 CMakeFiles/survivor.dir/source/State/GameContext.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/survivor.dir/source/State/GameContext.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/survivor.dir/source/State/GameContext.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/GameContext.cpp.o -MF CMakeFiles/survivor.dir/source/State/GameContext.cpp.o.d -o CMakeFiles/survivor.dir/source/State/GameContext.cpp.o -c /home/jojo/projects/survivor/source/State/GameContext.cpp
 
 CMakeFiles/survivor.dir/source/State/GameContext.cpp.i: cmake_force
@@ -215,7 +229,7 @@ CMakeFiles/survivor.dir/source/State/GameContext.cpp.s: cmake_force
 CMakeFiles/survivor.dir/source/State/MenuState.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/source/State/MenuState.cpp.o: /home/jojo/projects/survivor/source/State/MenuState.cpp
 CMakeFiles/survivor.dir/source/State/MenuState.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/survivor.dir/source/State/MenuState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/survivor.dir/source/State/MenuState.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/MenuState.cpp.o -MF CMakeFiles/survivor.dir/source/State/MenuState.cpp.o.d -o CMakeFiles/survivor.dir/source/State/MenuState.cpp.o -c /home/jojo/projects/survivor/source/State/MenuState.cpp
 
 CMakeFiles/survivor.dir/source/State/MenuState.cpp.i: cmake_force
@@ -229,7 +243,7 @@ CMakeFiles/survivor.dir/source/State/MenuState.cpp.s: cmake_force
 CMakeFiles/survivor.dir/source/State/PauseState.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/source/State/PauseState.cpp.o: /home/jojo/projects/survivor/source/State/PauseState.cpp
 CMakeFiles/survivor.dir/source/State/PauseState.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/survivor.dir/source/State/PauseState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/survivor.dir/source/State/PauseState.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/PauseState.cpp.o -MF CMakeFiles/survivor.dir/source/State/PauseState.cpp.o.d -o CMakeFiles/survivor.dir/source/State/PauseState.cpp.o -c /home/jojo/projects/survivor/source/State/PauseState.cpp
 
 CMakeFiles/survivor.dir/source/State/PauseState.cpp.i: cmake_force
@@ -243,7 +257,7 @@ CMakeFiles/survivor.dir/source/State/PauseState.cpp.s: cmake_force
 CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: /home/jojo/projects/survivor/source/State/PlayingState.cpp
 CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o -MF CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o.d -o CMakeFiles/survivor.dir/source/State/PlayingState.cpp.o -c /home/jojo/projects/survivor/source/State/PlayingState.cpp
 
 CMakeFiles/survivor.dir/source/State/PlayingState.cpp.i: cmake_force
@@ -257,7 +271,7 @@ CMakeFiles/survivor.dir/source/State/PlayingState.cpp.s: cmake_force
 CMakeFiles/survivor.dir/source/State/StateStack.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/source/State/StateStack.cpp.o: /home/jojo/projects/survivor/source/State/StateStack.cpp
 CMakeFiles/survivor.dir/source/State/StateStack.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/survivor.dir/source/State/StateStack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/survivor.dir/source/State/StateStack.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/StateStack.cpp.o -MF CMakeFiles/survivor.dir/source/State/StateStack.cpp.o.d -o CMakeFiles/survivor.dir/source/State/StateStack.cpp.o -c /home/jojo/projects/survivor/source/State/StateStack.cpp
 
 CMakeFiles/survivor.dir/source/State/StateStack.cpp.i: cmake_force
@@ -271,7 +285,7 @@ CMakeFiles/survivor.dir/source/State/StateStack.cpp.s: cmake_force
 CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o: /home/jojo/projects/survivor/source/State/UpgradingState.cpp
 CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o -MF CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o.d -o CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.o -c /home/jojo/projects/survivor/source/State/UpgradingState.cpp
 
 CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.i: cmake_force
@@ -285,7 +299,7 @@ CMakeFiles/survivor.dir/source/State/UpgradingState.cpp.s: cmake_force
 CMakeFiles/survivor.dir/main.cpp.o: CMakeFiles/survivor.dir/flags.make
 CMakeFiles/survivor.dir/main.cpp.o: /home/jojo/projects/survivor/main.cpp
 CMakeFiles/survivor.dir/main.cpp.o: CMakeFiles/survivor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/survivor.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/survivor.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/survivor.dir/main.cpp.o -MF CMakeFiles/survivor.dir/main.cpp.o.d -o CMakeFiles/survivor.dir/main.cpp.o -c /home/jojo/projects/survivor/main.cpp
 
 CMakeFiles/survivor.dir/main.cpp.i: cmake_force
@@ -307,6 +321,7 @@ survivor_OBJECTS = \
 "CMakeFiles/survivor.dir/source/player/Player.cpp.o" \
 "CMakeFiles/survivor.dir/source/player/Upgrade.cpp.o" \
 "CMakeFiles/survivor.dir/source/ResourceManager.cpp.o" \
+"CMakeFiles/survivor.dir/source/State/DeadState.cpp.o" \
 "CMakeFiles/survivor.dir/source/State/GameContext.cpp.o" \
 "CMakeFiles/survivor.dir/source/State/MenuState.cpp.o" \
 "CMakeFiles/survivor.dir/source/State/PauseState.cpp.o" \
@@ -327,6 +342,7 @@ survivor: CMakeFiles/survivor.dir/source/player/Bullet.cpp.o
 survivor: CMakeFiles/survivor.dir/source/player/Player.cpp.o
 survivor: CMakeFiles/survivor.dir/source/player/Upgrade.cpp.o
 survivor: CMakeFiles/survivor.dir/source/ResourceManager.cpp.o
+survivor: CMakeFiles/survivor.dir/source/State/DeadState.cpp.o
 survivor: CMakeFiles/survivor.dir/source/State/GameContext.cpp.o
 survivor: CMakeFiles/survivor.dir/source/State/MenuState.cpp.o
 survivor: CMakeFiles/survivor.dir/source/State/PauseState.cpp.o
@@ -340,7 +356,7 @@ survivor: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.3.0.2
 survivor: /usr/lib/x86_64-linux-gnu/libsfml-window.so.3.0.2
 survivor: /usr/lib/x86_64-linux-gnu/libsfml-system.so.3.0.2
 survivor: CMakeFiles/survivor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable survivor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jojo/projects/survivor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable survivor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/survivor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

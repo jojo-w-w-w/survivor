@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/jojo/projects/survivor/main.cpp" "CMakeFiles/survivor.dir/main.cpp.o" "gcc" "CMakeFiles/survivor.dir/main.cpp.o.d"
   "/home/jojo/projects/survivor/source/ResourceManager.cpp" "CMakeFiles/survivor.dir/source/ResourceManager.cpp.o" "gcc" "CMakeFiles/survivor.dir/source/ResourceManager.cpp.o.d"
+  "/home/jojo/projects/survivor/source/State/DeadState.cpp" "CMakeFiles/survivor.dir/source/State/DeadState.cpp.o" "gcc" "CMakeFiles/survivor.dir/source/State/DeadState.cpp.o.d"
   "/home/jojo/projects/survivor/source/State/GameContext.cpp" "CMakeFiles/survivor.dir/source/State/GameContext.cpp.o" "gcc" "CMakeFiles/survivor.dir/source/State/GameContext.cpp.o.d"
   "/home/jojo/projects/survivor/source/State/MenuState.cpp" "CMakeFiles/survivor.dir/source/State/MenuState.cpp.o" "gcc" "CMakeFiles/survivor.dir/source/State/MenuState.cpp.o.d"
   "/home/jojo/projects/survivor/source/State/PauseState.cpp" "CMakeFiles/survivor.dir/source/State/PauseState.cpp.o" "gcc" "CMakeFiles/survivor.dir/source/State/PauseState.cpp.o.d"
