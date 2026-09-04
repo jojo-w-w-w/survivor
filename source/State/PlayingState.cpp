@@ -266,6 +266,8 @@ void PlayingState::update(sf::Time delta)
     {
         //切换至死亡界面
         stack.changeState(std::make_unique<DeadState>(window, stack, context));
+        
+        return;
     }
 
     //如果经验条满了，切换至更新状态

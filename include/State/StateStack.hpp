@@ -24,5 +24,10 @@ public:
     
 private:
     std::vector<std::unique_ptr<GameState>> states;
+
+    std::unique_ptr<GameState> nextState;
+    bool popRequested{false};
+
+    void applyPendingChanges();
     
 };
