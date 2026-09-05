@@ -67,10 +67,10 @@ cmake --build build -j
 
 - GameState 抽象设计的游戏状态基类，包含每个状态中应该有的基本功能：时间处理、逻辑处理、渲染
 - StateStack 顾名思义状态栈就是存放状态的栈，某些状态不是完全的切换关系，而是暂时的置于上层。比如在游玩时想要暂停。
-- GameContext
-- EnemyBase
-- EnemyFactory
-- ResourceManager
+- GameContext 主要功能是集中管理全局的容器，把游戏当前运行所需的对象集中在一起。同时使用智能指针管理玩家等对象资源
+- EnemyBase 抽象出来的敌人的基本状态属性
+- EnemyFactory 使用工厂的设计模式来生产三种不同的敌人，核心还是对敌人种类的抽象
+- ResourceManager 纹理种类一致所以使用智能指针进行统一的管理
 
 ## 后续计划
 

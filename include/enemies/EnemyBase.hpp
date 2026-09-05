@@ -10,7 +10,7 @@ public:
     virtual ~EnemyBase() = default;
 
     //敌人都需要实现的行为
-    virtual void update(float dt, Player& player) = 0;  //更新位置
+    virtual void update(float dt, Player& player) = 0;          //更新位置
     virtual void render(sf::RenderWindow& window) const = 0;    //绘制
 
     virtual bool isActive() const = 0;                          //检测是否存活
