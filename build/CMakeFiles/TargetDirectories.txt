@@ -1,3 +1,0 @@
-/home/jojo/projects/survivor/build/CMakeFiles/survivor.dir
-/home/jojo/projects/survivor/build/CMakeFiles/edit_cache.dir
-/home/jojo/projects/survivor/build/CMakeFiles/rebuild_cache.dir
