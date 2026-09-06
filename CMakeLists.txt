@@ -4,6 +4,8 @@ project(RoguelikeSurvivor VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(ENABLE_SANITIZERS "Enable runtime sanitizers" OFF)
+
 file(GLOB SOURCES_ENEMY "source/enemies/*.cpp")
 file(GLOB SOURCES_PLAYER "source/player/*.cpp")
 file(GLOB SOURCE_MANAGER "source/*.cpp")
@@ -20,6 +22,17 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     )
 elseif(MSVC)
     target_compile_options(survivor PRIVATE /W4)
+endif()
+
+if(ENABLE_SANITIZERS AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(survivor PRIVATE
+        -fsanitize=address,undefined
+        -fno-omit-frame-pointer
+    )
+
+    target_link_options(survivor PRIVATE
+        -fsanitize=address,undefined
+    )
 endif()
 
 target_include_directories(survivor PRIVATE include include/enemies include/player include/State)
