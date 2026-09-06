@@ -18,10 +18,10 @@ Player::Player() : texture(ResourceManager::getTexture("assets/player.png")),
 
 }
 
-void Player::update(float dt)
-{
+// void Player::update(float dt)
+// {
     
-}
+// }
 
 void Player::move(sf::Vector2f direction, float delta)
 {

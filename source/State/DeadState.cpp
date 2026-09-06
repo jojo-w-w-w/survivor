@@ -78,7 +78,7 @@ void DeadState::handleInput(const sf::Event& event)
     }
 }
 
-void DeadState::update(sf::Time delta) 
+void DeadState::update(sf::Time) 
 {
 
 }

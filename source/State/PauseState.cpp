@@ -72,7 +72,7 @@ void PauseState::handleInput(const sf::Event& event)
     }
 }
 
-void PauseState::update(sf::Time delta)
+void PauseState::update(sf::Time)
 {
 
 }

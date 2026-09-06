@@ -93,7 +93,7 @@ void MenuState::handleInput(const sf::Event& event)
     }
 }
 
-void MenuState::update(sf::Time delta)
+void MenuState::update(sf::Time)
 {
 
 }

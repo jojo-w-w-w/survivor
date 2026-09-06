@@ -12,6 +12,16 @@ list(APPEND SOURCES ${SOURCES_ENEMY} ${SOURCES_PLAYER} ${SOURCE_MANAGER} ${SOURC
 
 add_executable(survivor ${SOURCES})
 
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(survivor PRIVATE
+        -Wall
+        -Wextra
+        -Wpedantic
+    )
+elseif(MSVC)
+    target_compile_options(survivor PRIVATE /W4)
+endif()
+
 target_include_directories(survivor PRIVATE include include/enemies include/player include/State)
 
 find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <cstddef>
 #include "UpgradingState.hpp"
 
 UpgradingState::UpgradingState(sf::RenderWindow& window, StateStack& stack, GameContext& context) : 
@@ -59,7 +60,7 @@ void UpgradingState::handleInput(const sf::Event& event)
         else if(keyPressed->code == sf::Keyboard::Key::Num3) 
             choice = 2;
 
-        if(choice >= 0 && choice < UpgradeOption.size()) 
+        if(choice >= 0 && static_cast<std::size_t>(choice) < UpgradeOption.size()) 
         {
             UpgradeOption[choice].apply(*context.player);  // 应用升级效果
             //升级结束切换至游玩状态
@@ -69,7 +70,7 @@ void UpgradingState::handleInput(const sf::Event& event)
     }
 }
 
-void UpgradingState::update(sf::Time delta)
+void UpgradingState::update(sf::Time)
 {
 
 }
