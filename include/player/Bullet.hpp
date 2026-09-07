@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
+#include "ResourceManager.hpp"
 
 class Bullet
 {
@@ -18,7 +20,7 @@ public:
 private:
 
     //子弹图片
-    sf::Texture texture;
+    std::shared_ptr<sf::Texture> texture;
     sf::Sprite sprite;
 
     sf::Vector2f velocity;  //归一化的方向
