@@ -44,4 +44,6 @@ private:
     //游玩时的敌人生成
     float enemySpawnTimer{0.f};
     float enemySpawnInterval{1.f};//每秒生成一只
+
+
 };

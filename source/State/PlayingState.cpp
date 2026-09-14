@@ -86,14 +86,15 @@ void PlayingState::handleInput(const sf::Event& event)
             stack.pushState(std::make_unique<PauseState>(window, stack, context));
         }
     }
-   
-
 }
 
 void PlayingState::update(sf::Time delta)
 {
     float dt = delta.asSeconds();
     
+    //冷却计时（回复CD中）
+    context.player->updateShootTimer(dt);
+
     // 敌人生成计时器
     enemySpawnTimer += dt;
 
@@ -130,10 +131,9 @@ void PlayingState::update(sf::Time delta)
     }
 
     //子弹发射逻辑
-    //如果玩家此时可以发射子弹
-    if(context.player->canshoot(dt))
+    //如果冷却计时大于冷却时间（射击CD好了）并且按下攻击键，此时可以发射子弹
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && context.player->canShoot())
     {
-
         //遍历所有活着的敌人找到最近的
         const EnemyBase* nearstEnemy = nullptr;
         float minDistance = std::numeric_limits<float>::max();//将最小距离初始化为极大值方便更新
@@ -158,7 +158,7 @@ void PlayingState::update(sf::Time delta)
         }
         
         //如果找到敌人就发射子弹
-        if(nearstEnemy != nullptr && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J))
+        if(nearstEnemy != nullptr)
         {
             sf::Vector2f direction = nearstEnemy->getPosition() - context.player->getPosition();
             float len = std::sqrt(direction.x * direction.x + direction.y * direction.y);
@@ -186,9 +186,12 @@ void PlayingState::update(sf::Time delta)
 
                 context.bullets.push_back(std::make_unique<Bullet>());                                 //向子弹数组里添加子弹
                 context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活            
-           }    
+            }
+            //子弹发射后进入射击进入CD
+            context.player->resetShootTimer();
         }
     }
+    
 
     //更新所有子弹的状态
     for (auto& bullet : context.bullets)

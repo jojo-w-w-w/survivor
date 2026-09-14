@@ -90,16 +90,26 @@ void Player::reset()
 
 }
 
-bool Player::canshoot(float dt)
+void Player::updateShootTimer(float dt)
 {
-    shootTimer += dt;
-    //射击计时器的时间大于冷却
-    if(shootTimer >= shootCooldown)
+    if(shootTimer < shootCooldown)
     {
-        shootTimer = 0.f;               //重置计时器
-        return true;                    //通知外部可以射击
+        shootTimer += dt;
     }
-    return false;
+}
+
+bool Player::canShoot() const
+{
+   if(shootTimer >= shootCooldown)
+   {
+        return true;
+   }
+   return false;
+}
+
+void Player::resetShootTimer()
+{
+    shootTimer = 0.f;
 }
 
 void Player::addExp(int amount)

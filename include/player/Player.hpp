@@ -27,7 +27,9 @@ public:
 //玩家行为:
 
     //发射子弹
-    bool canshoot(float dt);
+    void updateShootTimer(float dt);
+    bool canShoot() const;
+    void resetShootTimer();
 
     //升级
     void addExp(int amount);
