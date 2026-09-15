@@ -88,7 +88,7 @@ void PlayingState::handleInput(const sf::Event& event)
     }
 }
 
-void PlayingState::updateEnemySpwaning(float dt)
+void PlayingState::updateEnemySpawning(float dt)
 {
     // 敌人生成计时器
     enemySpawnTimer += dt;
@@ -97,12 +97,6 @@ void PlayingState::updateEnemySpwaning(float dt)
     {
         enemySpawnTimer -= enemySpawnInterval;
         spawnEnemy();
-    }
-
-    //敌人移动
-    for(auto& enemy : context.enemies)
-    {
-        enemy->update(dt, *context.player);
     }
 }
 
@@ -126,6 +120,15 @@ void PlayingState::updatePlayerMovement(float dt)
     if(context.player)
     {
         context.player->move(direction, dt);
+    }
+}
+
+void PlayingState::updateEnemyMovement(float dt)
+{
+    //敌人移动
+    for(auto& enemy : context.enemies)
+    {
+        enemy->update(dt, *context.player);
     }
 }
 
@@ -297,7 +300,7 @@ void PlayingState::updateHUD()
     }
 }
 
-void PlayingState::StateTransitions()
+bool PlayingState::StateTransitions()
 {
     //如果玩家死亡，则游戏结束
     if(context.player->isDead())
@@ -305,7 +308,7 @@ void PlayingState::StateTransitions()
         //切换至死亡界面
         stack.changeState(std::make_unique<DeadState>(window, stack, context));
         
-        return;
+        return true;
     }
 
     //如果经验条满了，切换至更新状态
@@ -313,17 +316,24 @@ void PlayingState::StateTransitions()
     {
         stack.pushState(std::make_unique<UpgradingState>(window, stack, context));
     }
+
+    return false;
 }
 
 void PlayingState::update(sf::Time delta)
 {
     float dt = delta.asSeconds();
 
-    updateEnemySpwaning(dt);
+    updateEnemySpawning(dt);
+    updateEnemyMovement(dt);
     updatePlayerMovement(dt);
     updateShooting(dt);
     handleCollisions();
-    StateTransitions();
+
+    bool shouldStop = StateTransitions();//用来记录是否处于死亡状态
+    if(shouldStop)
+        return;
+
     updateHUD();
 
 }
@@ -333,7 +343,7 @@ void PlayingState::render()
     //绘制背景
     window.draw(PlayingBgSprite);
 
-    //只有在游戏进程发生时才绘制 HDU
+    //只有在游戏进程发生时才绘制 HUD
     window.draw(hpText);
     window.draw(hpBarBg);
     window.draw(hpBar);
