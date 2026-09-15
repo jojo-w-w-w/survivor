@@ -16,6 +16,14 @@ public:
     void spawnEnemy();
 
     void handleInput(const sf::Event& event) override;
+
+    void updateEnemySpwaning(float dt);
+    void updatePlayerMovement(float dt);
+    void updateShooting(float dt);
+    void handleCollisions();
+    void StateTransitions();
+    void updateHUD();
+    
     void update(sf::Time delta) override;
     void render() override;
 

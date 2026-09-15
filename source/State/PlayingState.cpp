@@ -88,13 +88,8 @@ void PlayingState::handleInput(const sf::Event& event)
     }
 }
 
-void PlayingState::update(sf::Time delta)
+void PlayingState::updateEnemySpwaning(float dt)
 {
-    float dt = delta.asSeconds();
-    
-    //冷却计时（回复CD中）
-    context.player->updateShootTimer(dt);
-
     // 敌人生成计时器
     enemySpawnTimer += dt;
 
@@ -104,7 +99,16 @@ void PlayingState::update(sf::Time delta)
         spawnEnemy();
     }
 
-    //处理玩家移动
+    //敌人移动
+    for(auto& enemy : context.enemies)
+    {
+        enemy->update(dt, *context.player);
+    }
+}
+
+void PlayingState::updatePlayerMovement(float dt)
+{
+     //处理玩家移动
     sf::Vector2f direction(0.f, 0.f);
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -123,12 +127,12 @@ void PlayingState::update(sf::Time delta)
     {
         context.player->move(direction, dt);
     }
+}
 
-    //敌人移动
-    for(auto& enemy : context.enemies)
-    {
-        enemy->update(dt, *context.player);
-    }
+void PlayingState::updateShooting(float dt)
+{
+    //冷却计时（回复CD中）
+    context.player->updateShootTimer(dt);
 
     //子弹发射逻辑
     //如果冷却计时大于冷却时间（射击CD好了）并且按下攻击键，此时可以发射子弹
@@ -201,7 +205,10 @@ void PlayingState::update(sf::Time delta)
             bullet->update(dt);
         }
     }
+}
 
+void PlayingState::handleCollisions()
+{
     //碰撞检测:
     //敌人与子弹的碰撞检测
     for(auto& enemy : context.enemies)
@@ -263,22 +270,10 @@ void PlayingState::update(sf::Time delta)
             }),
             context.bullets.end()
     );
+}
 
-    //如果玩家死亡，则游戏结束
-    if(context.player->isDead())
-    {
-        //切换至死亡界面
-        stack.changeState(std::make_unique<DeadState>(window, stack, context));
-        
-        return;
-    }
-
-    //如果经验条满了，切换至更新状态
-    if(context.player->justLevelUp())
-    {
-        stack.pushState(std::make_unique<UpgradingState>(window, stack, context));
-    }
-
+void PlayingState::updateHUD()
+{
     //更新HUD
     if(context.player)
     {
@@ -300,6 +295,37 @@ void PlayingState::update(sf::Time delta)
         // 更新等级文字
         levelText.setString("Level: " + std::to_string(context.player->getLevel()));
     }
+}
+
+void PlayingState::StateTransitions()
+{
+    //如果玩家死亡，则游戏结束
+    if(context.player->isDead())
+    {
+        //切换至死亡界面
+        stack.changeState(std::make_unique<DeadState>(window, stack, context));
+        
+        return;
+    }
+
+    //如果经验条满了，切换至更新状态
+    if(context.player->justLevelUp())
+    {
+        stack.pushState(std::make_unique<UpgradingState>(window, stack, context));
+    }
+}
+
+void PlayingState::update(sf::Time delta)
+{
+    float dt = delta.asSeconds();
+
+    updateEnemySpwaning(dt);
+    updatePlayerMovement(dt);
+    updateShooting(dt);
+    handleCollisions();
+    StateTransitions();
+    updateHUD();
+
 }
 
 void PlayingState::render()
