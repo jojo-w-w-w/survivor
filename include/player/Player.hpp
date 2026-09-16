@@ -1,8 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "ResourceManager.hpp"
-#include "MenuState.hpp"
-#include "PlayingState.hpp"
 
 struct Upgrade;
 

@@ -2,8 +2,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
-#include "MenuState.hpp"
-#include "PlayingState.hpp"
+#include "ResourceManager.hpp"
 
 Player::Player() : texture(ResourceManager::getTexture("assets/player.png")), 
                    sprite(*texture), player_speed(200.f), maxHp(5),

@@ -3,6 +3,7 @@
 #include <cmath>
 #include <random>
 #include <SFML/Graphics.hpp>
+#include "Player.hpp"
 
 Enemy::Enemy() : texture(ResourceManager::getTexture("assets/enemy.png")), sprite(*texture), enemy_speed(100.f), active(true), expValue(5)
 {

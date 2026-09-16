@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "PauseState.hpp"
+#include "MenuState.hpp"
 
 PauseState::PauseState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
 window(window), stack(stack), context(context), titleText(font), ContinueText(font), QuitText(font)

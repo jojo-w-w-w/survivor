@@ -3,6 +3,7 @@
 #include <cmath>
 #include <random>
 #include <SFML/Graphics.hpp>
+#include "Player.hpp"
 
 Boss::Boss() : texture(ResourceManager::getTexture("assets/danouboss.jpg")), sprite(*texture), enemy_speed(100.f), active(true), expValue(50)
 {

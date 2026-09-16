@@ -17,14 +17,16 @@ public:
 
     void handleInput(const sf::Event& event) override;
 
+private:
     void updateEnemySpawning(float dt);
-    void updateEnemyMovement(float dt);
     void updatePlayerMovement(float dt);
+    void updateEnemyMovement(float dt);
     void updateShooting(float dt);
     void handleCollisions();
-    bool StateTransitions();
+    bool handleStateTransitions();
     void updateHUD();
     
+public:
     void update(sf::Time delta) override;
     void render() override;
 

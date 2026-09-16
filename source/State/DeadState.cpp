@@ -1,6 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "DeadState.hpp"
+#include "MenuState.hpp"
+#include "Player.hpp"
+#include "EnemyBase.hpp"
+#include "Bullet.hpp"
 
 DeadState::DeadState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
 window(window), stack(stack), context(context), DeadBgSprite(DeadBgTexture), titleText(font), reStartText(font), QuitToMenuText(font) 

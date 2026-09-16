@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "MenuState.hpp"
+#include "Player.hpp"
+#include "EnemyBase.hpp"
+#include "Bullet.hpp"
 
 MenuState::MenuState(sf::RenderWindow& window, StateStack& stack, GameContext& context) : 
 window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), titleText(font), StartText(font), QuitText(font)

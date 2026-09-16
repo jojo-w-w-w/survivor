@@ -1,16 +1,11 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <memory.h>
-#include "Player.hpp"
-#include "EnemyBase.hpp"
-#include "Bullet.hpp"
-#include "PauseState.hpp"
-#include "ResourceManager.hpp"
+#include <memory>
+#include <vector>
 
 class Player;
 class EnemyBase;
 class Bullet;
-class ResourceManager;
+//class ResourceManager;
 
 struct GameContext
 {
@@ -21,7 +16,8 @@ struct GameContext
     //创建子弹容器
     std::vector<std::unique_ptr<Bullet>> bullets;
 
-    std::unique_ptr<ResourceManager> textureManager;
+    //std::unique_ptr<ResourceManager> textureManager;
 
     GameContext();
+    ~GameContext();
 };

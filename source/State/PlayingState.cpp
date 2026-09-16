@@ -2,8 +2,13 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include "Player.hpp"
+#include "Bullet.hpp"
+#include "EnemyBase.hpp"
+#include "PauseState.hpp"
 #include "PlayingState.hpp"
 #include "DeadState.hpp"
+#include "PauseState.hpp"
 #include "EnemyFactory.hpp"
 #include "UpgradingState.hpp"
 
@@ -300,7 +305,7 @@ void PlayingState::updateHUD()
     }
 }
 
-bool PlayingState::StateTransitions()
+bool PlayingState::handleStateTransitions()
 {
     //如果玩家死亡，则游戏结束
     if(context.player->isDead())
@@ -325,12 +330,12 @@ void PlayingState::update(sf::Time delta)
     float dt = delta.asSeconds();
 
     updateEnemySpawning(dt);
-    updateEnemyMovement(dt);
     updatePlayerMovement(dt);
+    updateEnemyMovement(dt);
     updateShooting(dt);
     handleCollisions();
 
-    bool shouldStop = StateTransitions();//用来记录是否处于死亡状态
+    bool shouldStop = handleStateTransitions();//用来记录是否处于死亡状态
     if(shouldStop)
         return;
 
