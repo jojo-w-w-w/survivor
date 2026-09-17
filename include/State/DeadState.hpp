@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include "GameState.hpp"
 #include "StateStack.hpp"
 #include "GameContext.hpp"
@@ -25,9 +26,9 @@ private:
     //设置死亡界面背景图片
     sf::Texture DeadBgTexture;
     sf::Sprite DeadBgSprite;
-    
+
     // 设置初始UI
-    sf::Font font;
+    std::shared_ptr<sf::Font> font;
     // 死亡
     sf::Text titleText;
     // 重新开始按钮
@@ -36,5 +37,5 @@ private:
     // 退出至菜单按钮
     sf::Text QuitToMenuText;
     sf::RectangleShape QuitToMenuButton;
-    
+
 };

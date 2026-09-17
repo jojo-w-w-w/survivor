@@ -5,17 +5,16 @@
 #include "Player.hpp"
 #include "EnemyBase.hpp"
 #include "Bullet.hpp"
+#include "ResourceManager.hpp"
 
 DeadState::DeadState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
-window(window), stack(stack), context(context), DeadBgSprite(DeadBgTexture), titleText(font), reStartText(font), QuitToMenuText(font) 
+window(window), stack(stack), context(context),
+DeadBgSprite(DeadBgTexture),
+font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
+titleText(*font), reStartText(*font), QuitToMenuText(*font)
 {
     //添加死亡背景图
 
-    //加载文字包
-    if(!font.openFromFile("LiberationSans-Bold.ttf"))
-    {
-        std::cerr << "Failed to load font\n";
-    }    
     //标题
     titleText.setString("You Died !!!");
     titleText.setCharacterSize(60);
@@ -51,7 +50,7 @@ window(window), stack(stack), context(context), DeadBgSprite(DeadBgTexture), tit
 
 DeadState::~DeadState() = default;
 
-void DeadState::handleInput(const sf::Event& event) 
+void DeadState::handleInput(const sf::Event& event)
 {
      //死亡界面按钮检测
     if(const auto* mousePressed = event.getIf<sf::Event::MouseButtonPressed>())
@@ -82,12 +81,12 @@ void DeadState::handleInput(const sf::Event& event)
     }
 }
 
-void DeadState::update(sf::Time) 
+void DeadState::update(sf::Time)
 {
 
 }
 
-void DeadState::render() 
+void DeadState::render()
 {
     // window.draw(MenuBgSprite);
 
@@ -95,7 +94,7 @@ void DeadState::render()
 
     window.draw(restartButton);
     window.draw(reStartText);
-    
+
     window.draw(QuitToMenuButton);
     window.draw(QuitToMenuText);
 }

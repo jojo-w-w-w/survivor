@@ -4,18 +4,17 @@
 #include <algorithm>
 #include <cstddef>
 #include "UpgradingState.hpp"
+#include "ResourceManager.hpp"
 
-UpgradingState::UpgradingState(sf::RenderWindow& window, StateStack& stack, GameContext& context) : 
-window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), title(font)
+UpgradingState::UpgradingState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
+window(window), stack(stack), context(context),
+MenuBgSprite(MenuBgTexture),
+font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
+title(*font)
 {
-    if(!font.openFromFile("LiberationSans-Bold.ttf"))
-    {
-        std::cerr << "Failed to load LiberationSans-Bold.ttf, cause UpgradingState.cpp\n" << std::endl;
-    }
-
     overlay.setSize(sf::Vector2f(1280, 720));
     overlay.setFillColor(sf::Color(0, 0, 0, 180)); // 180 是透明度
-    
+
     // 绘制标题
     title.setString("LEVEL UP!");
     title.setCharacterSize(50);
@@ -32,7 +31,7 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
     for(int i = 0; i < 3 && i < static_cast<int>(pool.size()); ++i)
     {
         UpgradeOption.push_back(pool[i]);
-        sf::Text text(font);
+        sf::Text text(*font);
 
         text.setString(std::to_string(i+1) + ". " + UpgradeOption[i].name + "\n   " + UpgradeOption[i].description);
         text.setCharacterSize(30);
@@ -40,7 +39,7 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
         text.setPosition({200.f, 250.f + i * 120.f});
         optionTexts.push_back(text);
     }
-    
+
 }
 
 UpgradingState::~UpgradingState() = default;
@@ -51,16 +50,16 @@ void UpgradingState::handleInput(const sf::Event& event)
     {
         int choice = -1;
 
-        if(keyPressed->code == sf::Keyboard::Key::Num1) 
+        if(keyPressed->code == sf::Keyboard::Key::Num1)
             choice = 0;
 
-        else if(keyPressed->code == sf::Keyboard::Key::Num2) 
+        else if(keyPressed->code == sf::Keyboard::Key::Num2)
             choice = 1;
 
-        else if(keyPressed->code == sf::Keyboard::Key::Num3) 
+        else if(keyPressed->code == sf::Keyboard::Key::Num3)
             choice = 2;
 
-        if(choice >= 0 && static_cast<std::size_t>(choice) < UpgradeOption.size()) 
+        if(choice >= 0 && static_cast<std::size_t>(choice) < UpgradeOption.size())
         {
             UpgradeOption[choice].apply(*context.player);  // 应用升级效果
             //升级结束切换至游玩状态
@@ -79,7 +78,7 @@ void UpgradingState::render()
 {
     window.draw(overlay);
     window.draw(title);
-    for (const auto& text : optionTexts) 
+    for (const auto& text : optionTexts)
     {
         window.draw(text);
     }

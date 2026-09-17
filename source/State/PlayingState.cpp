@@ -11,16 +11,20 @@
 #include "PauseState.hpp"
 #include "EnemyFactory.hpp"
 #include "UpgradingState.hpp"
+#include "ResourceManager.hpp"
 
 PlayingState::PlayingState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
-window(window), stack(stack), context(context), PlayingBgSprite(PlayingBgTexture), hpText(font), expText(font), levelText(font)
+window(window), stack(stack),
+context(context), PlayingBgSprite(PlayingBgTexture),
+font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
+hpText(*font), expText(*font), levelText(*font)
 {
     //绘制背景图
     if(!PlayingBgTexture.loadFromFile("assets/background.png"))
     {
         std::cerr << "Failed to load background texture!" << std::endl;
     }
-    
+
     //重新绑定图片资源
     PlayingBgSprite.setTexture(PlayingBgTexture, true);
 
@@ -63,7 +67,7 @@ window(window), stack(stack), context(context), PlayingBgSprite(PlayingBgTexture
     levelText.setCharacterSize(22);
     levelText.setFillColor(sf::Color::White);
     levelText.setPosition({20.f, 75.f});
-    
+
     //生成敌人
     context.enemies.clear();
     context.enemies.push_back(EnemyFactory::creatRandom());
@@ -121,7 +125,7 @@ void PlayingState::updatePlayerMovement(float dt)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
         direction.x += 1.f;
-    
+
     if(context.player)
     {
         context.player->move(direction, dt);
@@ -168,7 +172,7 @@ void PlayingState::updateShooting(float dt)
                 nearstEnemy = enemy.get();//更新最近敌人指针
             }
         }
-        
+
         //如果找到敌人就发射子弹
         if(nearstEnemy != nullptr)
         {
@@ -185,25 +189,25 @@ void PlayingState::updateShooting(float dt)
 
             int bulletCount = context.player->getBulletCount();   // 需要添加这个公有方法
 
-            for (int i = 0; i < bulletCount; ++i) 
+            for (int i = 0; i < bulletCount; ++i)
             {
                 float angle = baseAngle;
-                if (bulletCount > 1) 
+                if (bulletCount > 1)
                 {
                     float offset = spread * (i - (bulletCount - 1.0f) / 2.0f);
                     angle += offset;
                 }
-            
+
                 sf::Vector2f bulletDir(std::cos(angle), std::sin(angle));
 
                 context.bullets.push_back(std::make_unique<Bullet>());                                 //向子弹数组里添加子弹
-                context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活            
+                context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活
             }
             //子弹发射后进入射击进入CD
             context.player->resetShootTimer();
         }
     }
-    
+
 
     //更新所有子弹的状态
     for (auto& bullet : context.bullets)
@@ -231,7 +235,7 @@ void PlayingState::handleCollisions()
             //当前子弹不存在则遍历下一个
             if(!bullet->isActive())
                 continue;
-            
+
             //如果子弹的边框与敌人的边框相交
             if(bullet->getBound().findIntersection(enemy->getBound()).has_value())
             {
@@ -247,13 +251,13 @@ void PlayingState::handleCollisions()
     {
         if(!enemy->isActive())
             continue;
-        
+
         //如果玩家与敌人发生碰撞
         if(context.player->getBound().findIntersection(enemy->getBound()).has_value())
         {
             context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
             enemy->deActive();//敌人消失
-            context.player->isDamage(1);//玩家受到伤害 
+            context.player->isDamage(1);//玩家受到伤害
         }
     }
 
@@ -312,7 +316,7 @@ bool PlayingState::handleStateTransitions()
     {
         //切换至死亡界面
         stack.changeState(std::make_unique<DeadState>(window, stack, context));
-        
+
         return true;
     }
 

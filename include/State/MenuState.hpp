@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include "GameState.hpp"
 #include "StateStack.hpp"
 #include "GameContext.hpp"
@@ -25,9 +26,9 @@ private:
     //设置开始界面背景图片
     sf::Texture MenuBgTexture;
     sf::Sprite MenuBgSprite;
-    
+
     // 设置初始UI
-    sf::Font font;
+    std::shared_ptr<sf::Font> font;
     // 菜单标题
     sf::Text titleText;
     // 开始按钮
@@ -36,5 +37,5 @@ private:
     // 退出按钮
     sf::Text QuitText;
     sf::RectangleShape QuitButton;
-    
+
 };

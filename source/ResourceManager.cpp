@@ -22,3 +22,25 @@ std::shared_ptr<sf::Texture> ResourceManager::getTexture(const std::string& path
     textureCache[path] = newTexture;
     return newTexture;
 }
+
+std::map<std::string, std::shared_ptr<sf::Font>> ResourceManager::fontCache;
+
+std::shared_ptr<sf::Font> ResourceManager::getFont(const std::string& path)
+{
+    auto it = fontCache.find(path);
+    if(it != fontCache.end())
+    {
+        return it->second;
+    }
+
+    auto newFont = std::make_shared<sf::Font>();
+    if(!newFont->openFromFile(path))
+    {
+        throw std::runtime_error
+        (
+            std::string("Failed to load font: ") + path
+        );
+    }
+    fontCache[path] = newFont;
+    return newFont;
+}

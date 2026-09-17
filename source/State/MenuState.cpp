@@ -4,9 +4,12 @@
 #include "Player.hpp"
 #include "EnemyBase.hpp"
 #include "Bullet.hpp"
+#include "ResourceManager.hpp"
 
-MenuState::MenuState(sf::RenderWindow& window, StateStack& stack, GameContext& context) : 
-window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), titleText(font), StartText(font), QuitText(font)
+MenuState::MenuState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
+window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture),
+font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
+titleText(*font), StartText(*font), QuitText(*font)
 {
     //绘制背景图
     if(!MenuBgTexture.loadFromFile("assets/StartBackground.png"))
@@ -16,7 +19,7 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
 
     //重新绑定图片资源
     MenuBgSprite.setTexture(MenuBgTexture, true);
-    
+
     const sf::FloatRect bgBounds = MenuBgSprite.getLocalBounds();
 
     MenuBgSprite.setScale
@@ -25,11 +28,6 @@ window(window), stack(stack), context(context), MenuBgSprite(MenuBgTexture), tit
         static_cast<float>(window.getSize().y) / bgBounds.size.y
     });
 
-    //加载文字包
-    if(!font.openFromFile("LiberationSans-Bold.ttf"))
-    {
-        std::cerr << "Failed to load font\n";
-    }    
     //标题
     titleText.setString("RougeLike");
     titleText.setCharacterSize(60);
@@ -109,7 +107,7 @@ void MenuState::render()
 
     window.draw(startButton);
     window.draw(StartText);
-    
+
     window.draw(QuitButton);
     window.draw(QuitText);
 }

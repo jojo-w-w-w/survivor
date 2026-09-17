@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include "GameState.hpp"
 #include "StateStack.hpp"
 #include "GameContext.hpp"
@@ -28,14 +29,14 @@ private:
     // 升级选项总数
     std::vector<Upgrade> UpgradeOption;
     // 设置更新UI
-    sf::Font font;
+    std::shared_ptr<sf::Font> font;
     // 半透明黑色遮罩
     sf::RectangleShape overlay;
     // 绘制标题
     sf::Text title;
     // 单个选项
     std::vector<sf::Text> optionTexts;
-       
 
-    
+
+
 };

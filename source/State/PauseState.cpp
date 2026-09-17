@@ -2,17 +2,16 @@
 #include <iostream>
 #include "PauseState.hpp"
 #include "MenuState.hpp"
+#include "ResourceManager.hpp"
 
 PauseState::PauseState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
-window(window), stack(stack), context(context), titleText(font), ContinueText(font), QuitText(font)
+window(window), stack(stack), context(context),
+font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
+titleText(*font), ContinueText(*font), QuitText(*font)
 {
     //绘制暂停背景图
 
-    //加载文字包
-    if(!font.openFromFile("LiberationSans-Bold.ttf"))
-    {
-        std::cerr << "Failed to load font\n";
-    }    
+
     //标题
     titleText.setString("PAUSED");
     titleText.setCharacterSize(60);
@@ -87,7 +86,7 @@ void PauseState::render()
 
     window.draw(ContinueButton);
     window.draw(ContinueText);
-    
+
     window.draw(QuitButton);
     window.draw(QuitText);
 }

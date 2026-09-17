@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <memory>
 #include "GameState.hpp"
 #include "StateStack.hpp"
 #include "GameContext.hpp"
@@ -23,7 +24,7 @@ private:
     GameContext& context;
 
     // 设置初始UI
-    sf::Font font;
+    std::shared_ptr<sf::Font> font;
     // 暂停标题
     sf::Text titleText;
     // 继续按钮
