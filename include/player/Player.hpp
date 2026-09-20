@@ -19,8 +19,6 @@ public:
     bool isDead() const;                            //判断玩家是否死亡
     void isDamage(int damage);                      //判断玩家是否受伤
 
-    void reset();                                   //重置玩家状态S
-
 //玩家行为:
 
     //发射子弹

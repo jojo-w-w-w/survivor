@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include <memory>
 #include <vector>
 
@@ -10,6 +11,11 @@ class Bullet;
 struct GameContext
 {
     sf::Vector2f screenSize{};
+
+    sf::Vector2f getScreenSize() const
+    {
+        return screenSize;
+    }
 
     sf::Vector2f getScreenCenter() const
     {

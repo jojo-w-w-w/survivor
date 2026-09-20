@@ -71,7 +71,7 @@ void DeadState::handleInput(const sf::Event& event)
             if(restartButton.getGlobalBounds().contains(mousePos))
             {
                 //游戏准备切换至游玩时创建玩家
-                context.player = std::make_unique<Player>();
+                context.player = std::make_unique<Player>(context.getScreenCenter());
                 //清除之前的敌人
                 context.enemies.clear();
                 //清除之前的子弹

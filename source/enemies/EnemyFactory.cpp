@@ -6,18 +6,18 @@
 #include <array>
 
 
-std::unique_ptr<EnemyBase> EnemyFactory::create(EnemyType type) 
+std::unique_ptr<EnemyBase> EnemyFactory::create(EnemyType type, sf::Vector2f startPosition) 
 {
     switch (type) 
     {
-        case EnemyType::Normal: return std::make_unique<Enemy>();
-        case EnemyType::Fast:   return std::make_unique<FastEnemy>();
-        case EnemyType::Boss:   return std::make_unique<Boss>();
+        case EnemyType::Normal: return std::make_unique<Enemy>(startPosition);
+        case EnemyType::Fast:   return std::make_unique<FastEnemy>(startPosition);
+        case EnemyType::Boss:   return std::make_unique<Boss>(startPosition);
         default:                return nullptr;
     }
 }
 
-std::unique_ptr<EnemyBase> EnemyFactory::creatRandom()
+std::unique_ptr<EnemyBase> EnemyFactory::createRandom(sf::Vector2f startPosition)
 {
     // 所有可用敌人类型的列表
     static const std::array<EnemyType, 3> allTypes = 
@@ -31,5 +31,5 @@ std::unique_ptr<EnemyBase> EnemyFactory::creatRandom()
     static std::random_device rd;
     static std::mt19937 gen(rd());
     static std::uniform_int_distribution<size_t> dist(0, allTypes.size() - 1);
-    return create(allTypes[dist(gen)]);
+    return create(allTypes[dist(gen)], startPosition);
 }

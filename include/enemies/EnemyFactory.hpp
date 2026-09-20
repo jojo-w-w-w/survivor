@@ -12,7 +12,7 @@ public:
         Boss
     };
     
-    static std::unique_ptr<EnemyBase> create(EnemyType type);
+    static std::unique_ptr<EnemyBase> create(EnemyType type, sf::Vector2f startPosition);
 
-    static std::unique_ptr<EnemyBase> creatRandom();
+    static std::unique_ptr<EnemyBase> createRandom(sf::Vector2f startPosition);
 };

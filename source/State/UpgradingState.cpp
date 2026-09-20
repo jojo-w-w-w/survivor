@@ -21,6 +21,14 @@ title(*font)
     //重新绑定图片资源
     UpgradingBgSprite.setTexture(UpgradingBgTexture, true);
 
+    const sf::FloatRect bgBounds = UpgradingBgSprite.getLocalBounds();
+
+    UpgradingBgSprite.setScale
+    ({
+        static_cast<float>(window.getSize().x) / bgBounds.size.x,
+        static_cast<float>(window.getSize().y) / bgBounds.size.y
+    });
+
     overlay.setSize(sf::Vector2f(1280, 720));
     overlay.setFillColor(sf::Color(0, 0, 0, 180)); // 180 是透明度
 

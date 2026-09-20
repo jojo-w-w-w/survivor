@@ -21,6 +21,8 @@ pendingLevelUps(0)
         sf::IntRect({0, 0}, {256, 256})
     );
 
+    sprite.setScale({0.5f,0.5f});
+
     sf::FloatRect bounds = sprite.getLocalBounds();
 
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});
@@ -75,29 +77,6 @@ void Player::isDamage(int damage)
     {
         hp = 0;
     }
-}
-
-void Player::reset()
-{
-    player_speed = 200.f;
-    maxHp = 5;
-    hp = 5;
-    shootTimer = 0.f;
-    shootCooldown = 1.f;
-    bulletSpeed = 400.f;
-    bulletCount = 1;
-    exp = 0;
-    expToNextLevel = 10;
-    level = 1;
-    pendingLevelUps = 0;
-    
-    texture = ResourceManager::getTexture("assets/player.png");
-    sprite.setTexture(*texture);
-
-    sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin({bounds.size.x/ 2.f, bounds.size.y / 2.f});
-    sprite.setPosition({640.f, 360.f});//将玩家移动到窗口中心
-
 }
 
 void Player::updateShootTimer(float dt)

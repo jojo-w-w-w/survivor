@@ -19,6 +19,14 @@ titleText(*font), ContinueText(*font), QuitText(*font)
     //重新绑定图片资源
     PauseBgSprite.setTexture(PauseBgTexture, true);
 
+    const sf::FloatRect bgBounds = PauseBgSprite.getLocalBounds();
+
+    PauseBgSprite.setScale
+    ({
+        static_cast<float>(window.getSize().x) / bgBounds.size.x,
+        static_cast<float>(window.getSize().y) / bgBounds.size.y
+    });
+
     //标题
     titleText.setString("PAUSED");
     titleText.setCharacterSize(60);

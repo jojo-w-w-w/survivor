@@ -13,6 +13,10 @@ public:
     PlayingState(sf::RenderWindow& window, StateStack& stack, GameContext& context);
     ~PlayingState() override;
 
+private:
+    sf::Vector2f createEnemySpawnPosition();
+
+public:
     //生成敌人
     void spawnEnemy();
 

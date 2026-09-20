@@ -7,7 +7,7 @@ class FastEnemy : public EnemyBase
 {
 public:
     //敌人状态
-    FastEnemy();                                             //初始化敌人
+    FastEnemy(sf::Vector2f startPosition);                                             //初始化敌人
     void update(float dt, Player& player) override;  //更新敌人位置
     void render(sf::RenderWindow& window) const override;    //绘制敌人
 

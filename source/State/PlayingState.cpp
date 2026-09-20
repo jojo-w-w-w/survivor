@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <random>
 #include "Player.hpp"
 #include "Bullet.hpp"
 #include "EnemyBase.hpp"
@@ -70,14 +71,53 @@ hpText(*font), expText(*font), levelText(*font)
 
     //生成敌人
     context.enemies.clear();
-    context.enemies.push_back(EnemyFactory::creatRandom());
+    spawnEnemy();
 }
 
 PlayingState::~PlayingState() = default;
 
+sf::Vector2f PlayingState::createEnemySpawnPosition()
+{
+    static std::mt19937 generator(std::random_device{}());
+
+    const sf::Vector2f screenSize =
+        context.getScreenSize();
+
+    std::uniform_int_distribution<int> edgeDistribution(0, 3);
+
+    std::uniform_real_distribution<float> xDistribution
+    (
+        0.f, screenSize.x
+    );
+
+    std::uniform_real_distribution<float> yDistribution
+    (
+        0.f, screenSize.y
+    );
+
+    switch (edgeDistribution(generator))
+    {
+        case 0: // 上方
+            return {xDistribution(generator), 0.f};
+
+        case 1: // 下方
+            return {xDistribution(generator), screenSize.y};
+
+        case 2: // 左侧
+            return {0.f, yDistribution(generator)};
+
+        case 3: // 右侧
+            return {screenSize.x, yDistribution(generator)};
+    }
+
+    return {0.f, 0.f};
+}
+
 void PlayingState::spawnEnemy()
 {
-    auto enemy = EnemyFactory::creatRandom();
+    const sf::Vector2f spawnPosition = createEnemySpawnPosition();
+
+    auto enemy = EnemyFactory::createRandom(spawnPosition);
 
     if (enemy)
     {
@@ -214,7 +254,7 @@ void PlayingState::updateShooting(float dt)
     {
         if (bullet->isActive())
         {
-            bullet->update(dt);
+            bullet->update(dt, context.getScreenSize());
         }
     }
 }
