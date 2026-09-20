@@ -12,7 +12,7 @@ font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
 titleText(*font), StartText(*font), QuitText(*font)
 {
     //绘制背景图
-    if(!MenuBgTexture.loadFromFile("assets/StartBackground.png"))
+    if(!MenuBgTexture.loadFromFile("assets/MenuBackground.png"))
     {
         std::cerr << "Failed to load StartBackground texture!" << std::endl;
     }
@@ -77,7 +77,7 @@ void MenuState::handleInput(const sf::Event& event)
             if(startButton.getGlobalBounds().contains(mousePos))
             {
                 //游戏准备切换至游玩时创建玩家
-                context.player = std::make_unique<Player>();
+                context.player = std::make_unique<Player>(context.getScreenCenter());
                 //清除之前的敌人
                 context.enemies.clear();
                 //清除之前的子弹

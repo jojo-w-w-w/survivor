@@ -23,6 +23,10 @@ private:
     StateStack& stack;
     GameContext& context;
 
+    //设置暂停界面背景图片
+    sf::Texture PauseBgTexture;
+    sf::Sprite PauseBgSprite;
+
     // 设置初始UI
     std::shared_ptr<sf::Font> font;
     // 暂停标题

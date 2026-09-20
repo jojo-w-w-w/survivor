@@ -8,10 +8,19 @@
 
 UpgradingState::UpgradingState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
 window(window), stack(stack), context(context),
-MenuBgSprite(MenuBgTexture),
+UpgradingBgSprite(UpgradingBgTexture),
 font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
 title(*font)
 {
+    //添加升级背景图
+    if(!UpgradingBgTexture.loadFromFile("assets/UpgradeBackground.png"))
+    {
+        std::cerr << "Failed to load UpgradingBackground texture!" << std::endl;
+    }
+
+    //重新绑定图片资源
+    UpgradingBgSprite.setTexture(UpgradingBgTexture, true);
+
     overlay.setSize(sf::Vector2f(1280, 720));
     overlay.setFillColor(sf::Color(0, 0, 0, 180)); // 180 是透明度
 
@@ -76,6 +85,7 @@ void UpgradingState::update(sf::Time)
 
 void UpgradingState::render()
 {
+    window.draw(UpgradingBgSprite);
     window.draw(overlay);
     window.draw(title);
     for (const auto& text : optionTexts)

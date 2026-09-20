@@ -2,7 +2,7 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
-Bullet::Bullet() : texture(ResourceManager::getTexture("assets/bullet.png")), sprite(*texture), Bullet_speed(400.f), active(false)//只有玩家存活时才有子弹
+Bullet::Bullet() : texture(ResourceManager::getTexture("assets/Bullet.png")), sprite(*texture), Bullet_speed(400.f), active(false)//只有玩家存活时才有子弹
 {
     sf::FloatRect bounds = sprite.getLocalBounds();
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});//设置子弹的中心

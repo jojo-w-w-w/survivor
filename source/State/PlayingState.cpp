@@ -20,9 +20,9 @@ font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
 hpText(*font), expText(*font), levelText(*font)
 {
     //绘制背景图
-    if(!PlayingBgTexture.loadFromFile("assets/background.png"))
+    if(!PlayingBgTexture.loadFromFile("assets/PlayingBackground.png"))
     {
-        std::cerr << "Failed to load background texture!" << std::endl;
+        std::cerr << "Failed to load playingbackground texture!" << std::endl;
     }
 
     //重新绑定图片资源

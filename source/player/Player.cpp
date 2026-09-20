@@ -4,16 +4,27 @@
 #include "Player.hpp"
 #include "ResourceManager.hpp"
 
-Player::Player() : texture(ResourceManager::getTexture("assets/player.png")), 
-                   sprite(*texture), player_speed(200.f), maxHp(5),
-                   hp(5), shootTimer(0.f), shootCooldown(1.f),
-                   bulletSpeed(400.f), bulletCount(1), exp(0), 
-                   expToNextLevel(10), level(1), 
-                   pendingLevelUps(0)
+Player::Player(sf::Vector2f startPosition) : 
+texture(ResourceManager::getTexture("assets/Player.png")), 
+sprite(*texture), player_speed(200.f), maxHp(5),
+hp(5), shootTimer(0.f), shootCooldown(1.f), 
+bulletSpeed(400.f), bulletCount(1), exp(0), 
+expToNextLevel(10), level(1), 
+pendingLevelUps(0)
 {
+    // 像素画禁止平滑
+    texture->setSmooth(false);
+
+    // 显示第0列、第0行，也就是左上角第一格
+    sprite.setTextureRect
+    (
+        sf::IntRect({0, 0}, {256, 256})
+    );
+
     sf::FloatRect bounds = sprite.getLocalBounds();
+
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});
-    sprite.setPosition({640.f, 360.f});//将玩家移动到窗口中心
+    sprite.setPosition(startPosition);//将玩家移动到窗口中心
 
 }
 

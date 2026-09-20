@@ -7,7 +7,7 @@ class Player
 {
 public:
     //初始化玩家
-    Player();                                      // 构造函数：初始化形状、速度等
+    explicit Player(sf::Vector2f startPosition);    // 构造函数：初始化形状、速度等
     //void update(float dt);                         // 处理动画、状态更新
     void move(sf::Vector2f direction, float delta);// 处理移动
     void render(sf::RenderWindow& window) const;   // 绘制玩家

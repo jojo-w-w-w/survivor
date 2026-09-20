@@ -9,6 +9,17 @@ class Bullet;
 
 struct GameContext
 {
+    sf::Vector2f screenSize{};
+
+    sf::Vector2f getScreenCenter() const
+    {
+        return 
+        {
+            screenSize.x /2.f,
+            screenSize.y /2.f
+        };
+    }
+
     std::unique_ptr<Player> player;
 
     std::vector<std::unique_ptr<EnemyBase>> enemies;

@@ -22,16 +22,28 @@ int main()
 {
     try
     {
-        sf::RenderWindow window(sf::VideoMode({1280,720}), "Roguelike Survivor");//设置游戏窗口
-        if (!window.isOpen()) //如果窗口打开失败
-        {
-            std::cerr << "Failed to create window" << std::endl;
-            return 1;
-        }
-
+        //设置游戏窗口
+        const sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
+        sf::RenderWindow window
+        (
+            desktopMode,
+            "Roguelike Survivor",
+            sf::State::Fullscreen
+        );
+        
         window.setFramerateLimit(60);               //设置帧率为60
 
         GameContext context;
+
+        // 获取实际全屏尺寸
+        const auto size = window.getSize();
+
+        context.screenSize  = 
+        {
+            static_cast<float>(size.x),
+            static_cast<float>(size.y)
+        };
+
         StateStack stack;
         //设置初始状态为菜单
         stack.changeState(std::make_unique<MenuState>(window, stack, context));

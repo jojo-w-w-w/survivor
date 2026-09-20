@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
 
-Boss::Boss() : texture(ResourceManager::getTexture("assets/danouboss.jpg")), sprite(*texture), enemy_speed(100.f), active(true), expValue(50)
+Boss::Boss() : texture(ResourceManager::getTexture("assets/Boss.png")), sprite(*texture), enemy_speed(100.f), active(true), expValue(50)
 {
     sf::FloatRect bounds = sprite.getLocalBounds();
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});

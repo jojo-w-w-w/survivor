@@ -5,12 +5,19 @@
 #include "ResourceManager.hpp"
 
 PauseState::PauseState(sf::RenderWindow& window, StateStack& stack, GameContext& context) :
-window(window), stack(stack), context(context),
+window(window), stack(stack), context(context), 
+PauseBgSprite(PauseBgTexture), 
 font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
 titleText(*font), ContinueText(*font), QuitText(*font)
 {
     //绘制暂停背景图
+    if(!PauseBgTexture.loadFromFile("assets/PauseBackground.png"))
+    {
+        std::cerr << "Failed to load PauseBackground texture!" << std::endl;
+    }
 
+    //重新绑定图片资源
+    PauseBgSprite.setTexture(PauseBgTexture, true);
 
     //标题
     titleText.setString("PAUSED");
@@ -80,7 +87,7 @@ void PauseState::update(sf::Time)
 void PauseState::render()
 {
     //绘制背景
-    //window.draw(MenuBgSprite);
+    window.draw(PauseBgSprite);
 
     window.draw(titleText);
 

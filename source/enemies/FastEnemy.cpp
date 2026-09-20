@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
 
-FastEnemy::FastEnemy() : texture(ResourceManager::getTexture("assets/fastenemy.png")), sprite(*texture), enemy_speed(150.f), active(true), expValue(10)
+FastEnemy::FastEnemy() : texture(ResourceManager::getTexture("assets/FastEnemy.png")), sprite(*texture), enemy_speed(150.f), active(true), expValue(10)
 {
     sf::FloatRect bounds = sprite.getLocalBounds();
     sprite.setOrigin({bounds.size.x / 2.f, bounds.size.y / 2.f});

@@ -23,8 +23,8 @@ private:
     GameContext& context;
 
     // 设置更新界面背景图片
-    sf::Texture MenuBgTexture;
-    sf::Sprite MenuBgSprite;
+    sf::Texture UpgradingBgTexture;
+    sf::Sprite UpgradingBgSprite;
 
     // 升级选项总数
     std::vector<Upgrade> UpgradeOption;

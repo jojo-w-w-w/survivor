@@ -14,6 +14,13 @@ font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
 titleText(*font), reStartText(*font), QuitToMenuText(*font)
 {
     //添加死亡背景图
+    if(!DeadBgTexture.loadFromFile("assets/MenuBackground.png"))
+    {
+        std::cerr << "Failed to load DeadBackground texture!" << std::endl;
+    }
+
+    //重新绑定图片资源
+    DeadBgSprite.setTexture(DeadBgTexture, true);
 
     //标题
     titleText.setString("You Died !!!");
@@ -88,7 +95,7 @@ void DeadState::update(sf::Time)
 
 void DeadState::render()
 {
-    // window.draw(MenuBgSprite);
+    window.draw(DeadBgSprite);
 
     window.draw(titleText);
 
