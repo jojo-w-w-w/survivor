@@ -29,14 +29,29 @@ title(*font)
         static_cast<float>(window.getSize().y) / bgBounds.size.y
     });
 
-    overlay.setSize(sf::Vector2f(1280, 720));
+    overlay.setSize(context.getScreenSize());
+    overlay.setPosition({0.f, 0.f});
     overlay.setFillColor(sf::Color(0, 0, 0, 180)); // 180 是透明度
 
     // 绘制标题
     title.setString("LEVEL UP!");
-    title.setCharacterSize(50);
+    title.setCharacterSize(100);
     title.setFillColor(sf::Color::White);
-    title.setPosition({400.f, 100.f});
+
+    const sf::FloatRect titleBounds = title.getLocalBounds();
+
+    title.setOrigin
+    ({
+        titleBounds.position.x + titleBounds.size.x / 2.f,
+        titleBounds.position.y + titleBounds.size.y / 2.f
+    });
+
+    title.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.25f
+    });
+    
 
     //随机抽取三个升级选项
     UpgradeOption.clear();
@@ -51,9 +66,13 @@ title(*font)
         sf::Text text(*font);
 
         text.setString(std::to_string(i+1) + ". " + UpgradeOption[i].name + "\n   " + UpgradeOption[i].description);
-        text.setCharacterSize(30);
+        text.setCharacterSize(50);
         text.setFillColor(sf::Color::White);
-        text.setPosition({200.f, 250.f + i * 120.f});
+        text.setPosition
+        ({
+            200.f, 
+            250.f + i * 150.f
+        });
         optionTexts.push_back(text);
     }
 

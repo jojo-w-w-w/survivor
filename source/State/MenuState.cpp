@@ -29,36 +29,87 @@ titleText(*font), StartText(*font), QuitText(*font)
     });
 
     //标题
-    titleText.setString("RougeLike");
-    titleText.setCharacterSize(60);
+    titleText.setString("RogueLike");
+    titleText.setCharacterSize(120);
     titleText.setFillColor(sf::Color::White);
-    titleText.setPosition({480.f, 150.f});
+
+    const sf::FloatRect titleBounds = titleText.getLocalBounds();
+
+    titleText.setOrigin
+    ({
+        titleBounds.position.x + titleBounds.size.x / 2.f,
+        titleBounds.position.y + titleBounds.size.y / 2.f
+    });
+
+    titleText.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.25f
+    });
 
     //开始游戏按钮
     startButton.setSize(sf::Vector2f(300.f, 80.f));
+
+    const sf::Vector2f StartbuttonSize = startButton.getSize();
+
+    startButton.setOrigin
+    ({
+        StartbuttonSize.x / 2.f,
+        StartbuttonSize.y / 2.f
+    });
+
     startButton.setFillColor(sf::Color(100, 100, 100));
-    startButton.setPosition({490.f, 300.f});   //居中
+
+    startButton.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.80f
+    });   //居中
+
     //开始文本设置
     StartText.setString("Start");
     StartText.setCharacterSize(60);
     StartText.setFillColor(sf::Color::White);
     //自动使文本居中
     sf::FloatRect StartTextBounds = StartText.getLocalBounds();
-    StartText.setOrigin({StartTextBounds.position.x + StartTextBounds.size.x / 2, StartTextBounds.position.y + StartTextBounds.size.y / 2});
-    StartText.setPosition({startButton.getPosition().x + startButton.getSize().x / 2, startButton.getPosition().y + startButton.getSize().y / 2});
+    StartText.setOrigin
+    ({
+        StartTextBounds.position.x + StartTextBounds.size.x / 2.f, 
+        StartTextBounds.position.y + StartTextBounds.size.y / 2.f
+    });
+    StartText.setPosition({startButton.getPosition()});
 
     //退出游戏按钮
     QuitButton.setSize(sf::Vector2f(300.f, 80.f));
+
+    const sf::Vector2f QuitbuttonSize = QuitButton.getSize();
+
+    QuitButton.setOrigin
+    ({
+        QuitbuttonSize.x / 2.f,
+        QuitbuttonSize.y / 2.f
+    });
+
     QuitButton.setFillColor(sf::Color(100, 100, 100));
-    QuitButton.setPosition({490.f, 450.f});   //居中
+
+    QuitButton.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 1.2f
+    });   //居中
+
     //退出文本设置
     QuitText.setString("Quit");
     QuitText.setCharacterSize(60);
     QuitText.setFillColor(sf::Color::White);
     //自动使文本居中
     sf::FloatRect QuitTextBounds = QuitText.getLocalBounds();
-    QuitText.setOrigin({QuitTextBounds.position.x + QuitTextBounds.size.x / 2, QuitTextBounds.position.y + QuitTextBounds.size.y / 2});
-    QuitText.setPosition({QuitButton.getPosition().x + QuitButton.getSize().x / 2, QuitButton.getPosition().y + QuitButton.getSize().y / 2});
+    QuitText.setOrigin
+    ({
+        QuitTextBounds.position.x + QuitTextBounds.size.x / 2.f, 
+        QuitTextBounds.position.y + QuitTextBounds.size.y / 2.f
+    });
+    QuitText.setPosition({QuitButton.getPosition()});
 }
 
 MenuState::~MenuState() = default;

@@ -14,7 +14,7 @@ font(ResourceManager::getFont("LiberationSans-Bold.ttf")),
 titleText(*font), reStartText(*font), QuitToMenuText(*font)
 {
     //添加死亡背景图
-    if(!DeadBgTexture.loadFromFile("assets/MenuBackground.png"))
+    if(!DeadBgTexture.loadFromFile("assets/DeadBackground.png"))
     {
         std::cerr << "Failed to load DeadBackground texture!" << std::endl;
     }
@@ -22,37 +22,94 @@ titleText(*font), reStartText(*font), QuitToMenuText(*font)
     //重新绑定图片资源
     DeadBgSprite.setTexture(DeadBgTexture, true);
 
+    const sf::FloatRect bgBounds = DeadBgSprite.getLocalBounds();
+
+    DeadBgSprite.setScale
+    ({
+        static_cast<float>(window.getSize().x) / bgBounds.size.x,
+        static_cast<float>(window.getSize().y) / bgBounds.size.y
+    });
+
     //标题
     titleText.setString("You Died !!!");
-    titleText.setCharacterSize(60);
+    titleText.setCharacterSize(120);
     titleText.setFillColor(sf::Color::White);
-    titleText.setPosition({480.f, 150.f});
+    
+    const sf::FloatRect titleBounds = titleText.getLocalBounds();
+
+    titleText.setOrigin
+    ({
+        titleBounds.position.x + titleBounds.size.x / 2.f,
+        titleBounds.position.y + titleBounds.size.y / 2.f
+    });
+
+    titleText.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.25f
+    });
 
     //重新开始游戏按钮
     restartButton.setSize(sf::Vector2f(300.f, 80.f));
+    
+    const sf::Vector2f ReStartbuttonSize = restartButton.getSize();
+
+    restartButton.setOrigin
+    ({
+        ReStartbuttonSize.x / 2.f,
+        ReStartbuttonSize.y / 2.f
+    });
+
     restartButton.setFillColor(sf::Color(100, 100, 100));
-    restartButton.setPosition({490.f, 300.f});   //居中
+
+    restartButton.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.80f
+    });   //居中
+
     //重新开始文本设置
     reStartText.setString("reStart");
     reStartText.setCharacterSize(60);
     reStartText.setFillColor(sf::Color::White);
     //自动使文本居中
     sf::FloatRect reStartTextBounds = reStartText.getLocalBounds();
-    reStartText.setOrigin({reStartTextBounds.position.x + reStartTextBounds.size.x / 2, reStartTextBounds.position.y + reStartTextBounds.size.y / 2});
-    reStartText.setPosition({restartButton.getPosition().x + restartButton.getSize().x / 2, restartButton.getPosition().y + restartButton.getSize().y / 2});
+    reStartText.setOrigin
+    ({
+        reStartTextBounds.position.x + reStartTextBounds.size.x / 2, 
+        reStartTextBounds.position.y + reStartTextBounds.size.y / 2
+    });
+    reStartText.setPosition({restartButton.getPosition()});
 
     //退出至菜单游戏按钮
     QuitToMenuButton.setSize(sf::Vector2f(300.f, 80.f));
+
+    const sf::Vector2f QuitToMenubuttonSize = QuitToMenuButton.getSize();
+
+    QuitToMenuButton.setOrigin
+    ({
+        QuitToMenubuttonSize.x / 2.f,
+        QuitToMenubuttonSize.y / 2.f
+    });
+
     QuitToMenuButton.setFillColor(sf::Color(100, 100, 100));
-    QuitToMenuButton.setPosition({490.f, 450.f});   //居中
+    QuitToMenuButton.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 1.2f
+    });   //居中
     //退出至菜单文本设置
     QuitToMenuText.setString("QuitToMenu");
     QuitToMenuText.setCharacterSize(60);
     QuitToMenuText.setFillColor(sf::Color::White);
     //自动使文本居中
     sf::FloatRect QuitToMenuTextBounds = QuitToMenuText.getLocalBounds();
-    QuitToMenuText.setOrigin({QuitToMenuTextBounds.position.x + QuitToMenuTextBounds.size.x / 2, QuitToMenuTextBounds.position.y + QuitToMenuTextBounds.size.y / 2});
-    QuitToMenuText.setPosition({QuitToMenuButton.getPosition().x + QuitToMenuButton.getSize().x / 2, QuitToMenuButton.getPosition().y + QuitToMenuButton.getSize().y / 2});
+    QuitToMenuText.setOrigin
+    ({
+        QuitToMenuTextBounds.position.x + QuitToMenuTextBounds.size.x / 2, 
+        QuitToMenuTextBounds.position.y + QuitToMenuTextBounds.size.y / 2
+    });
+    QuitToMenuText.setPosition({QuitToMenuButton.getPosition()});
 }
 
 DeadState::~DeadState() = default;

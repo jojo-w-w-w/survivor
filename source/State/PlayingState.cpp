@@ -41,7 +41,19 @@ hpText(*font), expText(*font), levelText(*font)
     hpText.setString("HP: 3/3");
     hpText.setCharacterSize(20);
     hpText.setFillColor(sf::Color::White);
-    hpText.setPosition({230.f, 18.f});
+
+    //const sf::FloatRect hpTextBounds = hpText.getLocalBounds();
+
+    // hpText.setOrigin
+    // ({
+    //     hpTextBounds.position.x + hpTextBounds.size.x / 2.f,
+    //     hpTextBounds.position.y + hpTextBounds.size.y / 2.f
+    // });
+
+    hpText.setPosition
+    ({
+        230.f, 18.f
+    });
     //血量条背景
     hpBarBg.setSize(sf::Vector2f(200.f, 20.f));
     hpBarBg.setFillColor(sf::Color(60, 60, 60));
@@ -80,8 +92,7 @@ sf::Vector2f PlayingState::createEnemySpawnPosition()
 {
     static std::mt19937 generator(std::random_device{}());
 
-    const sf::Vector2f screenSize =
-        context.getScreenSize();
+    const sf::Vector2f screenSize = context.getScreenSize();
 
     std::uniform_int_distribution<int> edgeDistribution(0, 3);
 
@@ -241,7 +252,12 @@ void PlayingState::updateShooting(float dt)
                 sf::Vector2f bulletDir(std::cos(angle), std::sin(angle));
 
                 context.bullets.push_back(std::make_unique<Bullet>());                                 //向子弹数组里添加子弹
-                context.bullets.back()->launch(context.player->getPosition(), bulletDir, context.player->getBulletSpeed()); //将子弹的状态设为激活
+                context.bullets.back()->launch
+                (
+                    context.player->getPosition(), 
+                    bulletDir, 
+                    context.player->getBulletSpeed()
+                ); //将子弹的状态设为激活
             }
             //子弹发射后进入射击进入CD
             context.player->resetShootTimer();

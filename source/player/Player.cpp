@@ -6,20 +6,16 @@
 
 Player::Player(sf::Vector2f startPosition) : 
 texture(ResourceManager::getTexture("assets/Player.png")), 
-sprite(*texture), player_speed(200.f), maxHp(5),
-hp(5), shootTimer(0.f), shootCooldown(1.f), 
-bulletSpeed(400.f), bulletCount(1), exp(0), 
-expToNextLevel(10), level(1), 
-pendingLevelUps(0)
+sprite(*texture), walkAnimation({256, 256}, 6, 0.12f), 
+player_speed(200.f), maxHp(5), hp(5), 
+shootTimer(0.f), shootCooldown(1.f), bulletSpeed(400.f), bulletCount(1), 
+exp(0), expToNextLevel(10), level(1), pendingLevelUps(0)
 {
     // 像素画禁止平滑
     texture->setSmooth(false);
 
-    // 显示第0列、第0行，也就是左上角第一格
-    sprite.setTextureRect
-    (
-        sf::IntRect({0, 0}, {256, 256})
-    );
+    // 动画
+    walkAnimation.reset(sprite, 0);
 
     sprite.setScale({0.5f,0.5f});
 
@@ -30,19 +26,41 @@ pendingLevelUps(0)
 
 }
 
-// void Player::update(float dt)
-// {
-    
-// }
-
 void Player::move(sf::Vector2f direction, float delta)
 {
-    float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    float length = std::sqrt
+    (
+        direction.x * direction.x + 
+        direction.y * direction.y
+    );
 
-    if(length > 0)
+    const bool isMoving = length > 0.f;
+
+    if(isMoving)
+    {
         direction /= length;
-        
-    sprite.move(direction * player_speed * delta);
+
+        if(std::abs(direction.x) > std::abs(direction.y))
+        {
+            // 左边是第1行，右边是第2行
+            facingRow = direction.x < 0.f ? 1 : 2;
+        }
+        else
+        {
+            // 上边是第3行，下边是第0行
+            facingRow = direction.y < 0.f ? 3 : 0;
+        }
+
+        sprite.move(direction * player_speed * delta);
+    }
+
+    walkAnimation.update
+    (
+        sprite,
+        delta,
+        facingRow,
+        isMoving
+    );
 }
 
 void Player::render(sf::RenderWindow& window) const

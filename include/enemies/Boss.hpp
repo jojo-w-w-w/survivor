@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "EnemyBase.hpp"
 #include "ResourceManager.hpp"
+#include "Animation.hpp"
 
 class Boss : public EnemyBase
 {
@@ -24,6 +25,9 @@ private:
     //敌人图片
     std::shared_ptr<sf::Texture> texture; //敌人纹理
     sf::Sprite sprite;   //敌人
+    //动画
+    Animation walkAnimation;
+    int facingRow{0};
 
     float enemy_speed;
     bool active;                                         //用来标记敌人是否存活

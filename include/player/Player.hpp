@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Animation.hpp"
 
 struct Upgrade;
 
@@ -51,6 +52,9 @@ private:
     //玩家图片
     std::shared_ptr<sf::Texture> texture;//玩家纹理
     sf::Sprite sprite; //玩家
+    //动画
+    Animation walkAnimation;
+    int facingRow{0};
 
     float player_speed;
     int maxHp;

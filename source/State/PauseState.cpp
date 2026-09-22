@@ -29,35 +29,85 @@ titleText(*font), ContinueText(*font), QuitText(*font)
 
     //标题
     titleText.setString("PAUSED");
-    titleText.setCharacterSize(60);
+    titleText.setCharacterSize(120);
     titleText.setFillColor(sf::Color::White);
-    titleText.setPosition({480.f, 100.f});
+
+    const sf::FloatRect titleBounds = titleText.getLocalBounds();
+
+    titleText.setOrigin
+    ({
+        titleBounds.position.x + titleBounds.size.x / 2.f,
+        titleBounds.position.y + titleBounds.size.y / 2.f
+    });
+
+    titleText.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.25f
+    });
 
     //继续游戏按钮
     ContinueButton.setSize(sf::Vector2f({300.f, 80.f}));
+
+    const sf::Vector2f ContinuebuttonSize = ContinueButton.getSize();
+
+    ContinueButton.setOrigin
+    ({
+        ContinuebuttonSize.x / 2.f,
+        ContinuebuttonSize.y / 2.f
+    });
+
     ContinueButton.setFillColor(sf::Color(100, 100, 100));
-    ContinueButton.setPosition({490.f, 300.f});   //居中
+
+    ContinueButton.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 0.80f
+    });   //居中
+
     //继续游戏文本设置
     ContinueText.setString("Continue");
     ContinueText.setCharacterSize(40);
     ContinueText.setFillColor(sf::Color::White);
     //自动使文本居中
     sf::FloatRect ContinueTextBounds = ContinueText.getLocalBounds();
-    ContinueText.setOrigin({ContinueTextBounds.position.x + ContinueTextBounds.size.x / 2.f, ContinueTextBounds.position.y + ContinueTextBounds.size.y / 2.f});
-    ContinueText.setPosition({ContinueButton.getPosition().x + ContinueButton.getSize().x / 2.f, ContinueButton.getPosition().y + ContinueButton.getSize().y / 2.f});
+    ContinueText.setOrigin
+    ({
+        ContinueTextBounds.position.x + ContinueTextBounds.size.x / 2.f, 
+        ContinueTextBounds.position.y + ContinueTextBounds.size.y / 2.f
+    });
+    ContinueText.setPosition({ContinueButton.getPosition()});
 
     //退出游戏按钮
     QuitButton.setSize(sf::Vector2f({300.f, 80.f}));
+
+    const sf::Vector2f QuitbuttonSize = QuitButton.getSize();
+
+    QuitButton.setOrigin
+    ({
+        QuitbuttonSize.x / 2.f,
+        QuitbuttonSize.y / 2.f
+    });
+
     QuitButton.setFillColor(sf::Color(100, 100, 100));
-    QuitButton.setPosition({490.f, 450.f});   //居中
+
+    QuitButton.setPosition
+    ({
+        context.getScreenCenter().x,
+        context.getScreenCenter().y * 1.2f
+    });   //居中
     //退出文本设置
     QuitText.setString("Quit");
     QuitText.setCharacterSize(60);
     QuitText.setFillColor(sf::Color::White);
     //自动使文本居中
     sf::FloatRect QuitTextBounds = QuitText.getLocalBounds();
-    QuitText.setOrigin({QuitTextBounds.position.x + QuitTextBounds.size.x / 2.f, QuitTextBounds.position.y + QuitTextBounds.size.y / 2.f});
-    QuitText.setPosition({QuitButton.getPosition().x + QuitButton.getSize().x / 2.f, QuitButton.getPosition().y + QuitButton.getSize().y / 2.f});
+    QuitText.setOrigin
+    ({
+        QuitTextBounds.position.x + QuitTextBounds.size.x / 2.f, 
+        QuitTextBounds.position.y + QuitTextBounds.size.y / 2.f
+    });
+    QuitText.setPosition({QuitButton.getPosition()});
 }
 
 PauseState::~PauseState() = default;

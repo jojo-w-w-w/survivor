@@ -7,16 +7,14 @@
 
 FastEnemy::FastEnemy(sf::Vector2f startPosition) : 
 texture(ResourceManager::getTexture("assets/FastEnemy.png")), 
-sprite(*texture), enemy_speed(150.f), active(true), expValue(10)
+sprite(*texture), walkAnimation({256, 256}, 6, 0.12f), 
+enemy_speed(150.f), active(true), expValue(10)
 {
     // 像素画禁止平滑
     texture->setSmooth(false);
 
-    // 显示第0列、第0行，也就是左上角第一格
-    sprite.setTextureRect
-    (
-        sf::IntRect({0, 0}, {256, 256})
-    );
+    // 动画
+    walkAnimation.reset(sprite, 0);
 
     sprite.setScale({0.5f,0.5f});
 
@@ -32,10 +30,33 @@ void FastEnemy::update(float dt, Player& player)
 
     float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
-    if(length > 0)
+    const bool isMoving = length > 0.f;
+
+    if(isMoving)
+    {
         direction /= length;
 
-    sprite.move(direction * enemy_speed * dt);
+        if(std::abs(direction.x) > std::abs(direction.y))
+        {
+            // 左边是第1行，右边是第2行
+            facingRow = direction.x < 0.f ? 1 : 2;
+        }
+        else
+        {
+            // 上边是第3行，下边是第0行
+            facingRow = direction.y < 0.f ? 3 : 0;
+        }
+
+        sprite.move(direction * enemy_speed * dt);
+    }
+
+    walkAnimation.update
+    (
+        sprite,
+        dt,
+        facingRow,
+        isMoving
+    );
 }
 
 void FastEnemy::render(sf::RenderWindow& window) const

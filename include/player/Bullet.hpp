@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "ResourceManager.hpp"
+#include "Animation.hpp"
 
 class Bullet
 {
@@ -22,6 +23,9 @@ private:
     //子弹图片
     std::shared_ptr<sf::Texture> texture;
     sf::Sprite sprite;
+    //动画
+    Animation animation;
+    void centerOrigin();
 
     sf::Vector2f velocity;  //归一化的方向
     float Bullet_speed;
