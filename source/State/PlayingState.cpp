@@ -38,18 +38,9 @@ hpText(*font), expText(*font), levelText(*font)
     });
 
     //血量文本
-    hpText.setString("HP: 3/3");
+    hpText.setString("HP: 10/10");
     hpText.setCharacterSize(20);
     hpText.setFillColor(sf::Color::White);
-
-    //const sf::FloatRect hpTextBounds = hpText.getLocalBounds();
-
-    // hpText.setOrigin
-    // ({
-    //     hpTextBounds.position.x + hpTextBounds.size.x / 2.f,
-    //     hpTextBounds.position.y + hpTextBounds.size.y / 2.f
-    // });
-
     hpText.setPosition
     ({
         230.f, 18.f
@@ -162,7 +153,7 @@ void PlayingState::updateEnemySpawning(float dt)
 
 void PlayingState::updatePlayerMovement(float dt)
 {
-     //处理玩家移动
+    //处理玩家移动
     sf::Vector2f direction(0.f, 0.f);
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
@@ -295,10 +286,13 @@ void PlayingState::handleCollisions()
             //如果子弹的边框与敌人的边框相交
             if(bullet->getBound().findIntersection(enemy->getBound()).has_value())
             {
-                context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
                 bullet->deActive();//子弹消失
-                enemy->deActive();//敌人消失
-                break;
+                enemy->takeDamage(1);            //敌人血量减去玩家的子弹伤害
+                if(!enemy->isActive())
+                {
+                    context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验 
+                    break;
+                }
             }
         }
     }
@@ -311,9 +305,12 @@ void PlayingState::handleCollisions()
         //如果玩家与敌人发生碰撞
         if(context.player->getBound().findIntersection(enemy->getBound()).has_value())
         {
-            context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
-            enemy->deActive();//敌人消失
-            context.player->isDamage(1);//玩家受到伤害
+            context.player->takeDamage(1);   //玩家血量减去敌人的碰撞伤害
+            enemy->takeDamage(1);            //敌人血量减去玩家的碰撞伤害
+            if(!enemy->isActive())
+            {
+                context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
+            }
         }
     }
 

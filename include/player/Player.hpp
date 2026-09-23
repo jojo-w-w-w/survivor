@@ -18,7 +18,7 @@ public:
     sf::FloatRect getBound() const;                 //碰撞检测
     int getHP() const;                              //获取玩家当前血量
     bool isDead() const;                            //判断玩家是否死亡
-    void isDamage(int damage);                      //判断玩家是否受伤
+    void takeDamage(int damage);                      //判断玩家是否受伤
 
 //玩家行为:
 
@@ -26,6 +26,9 @@ public:
     void updateShootTimer(float dt);
     bool canShoot() const;
     void resetShootTimer();
+
+    void updateNbTimer(float dt);
+    bool canNb() const;
 
     //升级
     void addExp(int amount);
@@ -63,10 +66,13 @@ private:
 //玩家行为：
 
     //射击
-    float shootTimer;                               //射击冷却计时器
-    float shootCooldown;                            //射击冷却
+    float shootTimer;               //射击冷却计时器
+    float shootCooldown;            //射击冷却
     float bulletSpeed;      
     int bulletCount;
+
+    float NbTimer;                  //受击无敌冷却计时器
+    float NbCooldown;               //受击无敌冷却
 
     //升级
     int exp;

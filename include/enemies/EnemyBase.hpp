@@ -12,7 +12,7 @@ public:
     EnemyBase
     (
         const std::string& texturePath, 
-        sf::Vector2f position, float speed, 
+        sf::Vector2f position, int HP, float speed, 
         float scale, int expvalue
     );
     virtual ~EnemyBase() = default;
@@ -21,9 +21,11 @@ public:
     virtual void update(float dt, Player& player);          //更新位置
     virtual void render(sf::RenderWindow& window) const;    //绘制
 
-    virtual bool isActive() const ;                          //检测是否存活
-    virtual sf::FloatRect getBound() const ;                 //碰撞检测
-    virtual void deActive();                                //消失
+    virtual bool isActive() const ;                         //检测是否存活
+    virtual sf::FloatRect getBound() const ;                //碰撞检测
+    int getHP() const;                                      //获取敌人当前血量
+    bool isDead() const;                                    //判断敌人是否死亡
+    void takeDamage(int damage);                            //判断敌人是否受伤
     virtual sf::Vector2f getPosition() const;               //获取位置
     virtual int getExp() const;   
     
@@ -34,6 +36,8 @@ private:
     //动画
     Animation walkAnimation;
     int facingRow{0};
+
+    int hp;
 
     float EnemySpeed;
     bool active;

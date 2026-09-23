@@ -8,12 +8,12 @@
 EnemyBase::EnemyBase
 (
     const std::string& texturePath, 
-    sf::Vector2f position, float speed, 
+    sf::Vector2f position, int HP, float speed, 
     float scale, int expvalue
 ) :
 texture(ResourceManager::getTexture(texturePath)), 
 sprite(*texture), walkAnimation({256, 256}, 6, 0.12f), 
-facingRow(0), 
+facingRow(0), hp(HP), 
 EnemySpeed(speed), active(true), ExpValue(expvalue)
 {
     // 设置初始动画帧
@@ -80,9 +80,24 @@ sf::FloatRect EnemyBase::getBound() const
     return sprite.getGlobalBounds();
 }
 
-void EnemyBase::deActive()
+int EnemyBase::getHP() const
 {
-    active = false;
+    return hp;
+}       
+
+bool EnemyBase::isDead() const   
+{
+    return hp <= 0;
+}  
+
+void EnemyBase::takeDamage(int damage)  
+{
+    hp -= damage;
+    if(hp <= 0)
+    {
+        hp = 0;
+        active = false;
+    }
 }
 
 sf::Vector2f EnemyBase::getPosition() const

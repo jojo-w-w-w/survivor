@@ -7,8 +7,9 @@
 Player::Player(sf::Vector2f startPosition) : 
 texture(ResourceManager::getTexture("assets/Player.png")), 
 sprite(*texture), walkAnimation({256, 256}, 6, 0.12f), 
-player_speed(200.f), maxHp(5), hp(5), 
+player_speed(200.f), maxHp(10), hp(10), 
 shootTimer(0.f), shootCooldown(1.f), bulletSpeed(400.f), bulletCount(1), 
+NbTimer(0.f), NbCooldown(1.f), 
 exp(0), expToNextLevel(10), level(1), pendingLevelUps(0)
 {
     // 像素画禁止平滑
@@ -88,9 +89,14 @@ bool Player::isDead() const
     return hp <= 0;
 }
 
-void Player::isDamage(int damage)
+void Player::takeDamage(int damage)
 {
-    hp -= damage;
+    if(canNb)
+    {
+        NbTimer = 0.f;
+        hp -= damage;
+    }
+    
     if(hp < 0)
     {
         hp = 0;
@@ -117,6 +123,24 @@ bool Player::canShoot() const
 void Player::resetShootTimer()
 {
     shootTimer = 0.f;
+}
+
+void Player::updateNbTimer(float dt)
+{
+    if(NbTimer < NbCooldown)
+    {
+        NbTimer += dt;
+    }
+}
+
+bool Player::canNb() const
+{
+    if(NbTimer >= NbCooldown)
+    {
+        return true;
+    }
+    return false;
+    
 }
 
 void Player::addExp(int amount)
