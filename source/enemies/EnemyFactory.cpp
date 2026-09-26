@@ -10,11 +10,20 @@ std::unique_ptr<EnemyBase> EnemyFactory::create(EnemyType type, sf::Vector2f sta
 {
     switch (type) 
     {
-        case EnemyType::Normal: return std::make_unique<Enemy>(startPosition);
-        case EnemyType::Fast:   return std::make_unique<FastEnemy>(startPosition);
-        case EnemyType::Boss:   return std::make_unique<Boss>(startPosition);
-        default:                return nullptr;
+        case EnemyType::Normal: 
+            return std::make_unique<Enemy>(startPosition);
+
+        case EnemyType::Fast:   
+            return std::make_unique<FastEnemy>(startPosition);
+
+        case EnemyType::Boss:   
+            return std::make_unique<Boss>(startPosition);
+
+        default:                
+            return nullptr;
     }
+
+    throw std::invalid_argument("Unknown enemy type");
 }
 
 std::unique_ptr<EnemyBase> EnemyFactory::createRandom(sf::Vector2f startPosition)

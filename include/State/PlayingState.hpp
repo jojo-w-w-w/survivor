@@ -22,6 +22,7 @@ public:
 
     void handleInput(const sf::Event& event) override;
 
+//事件处理
 private:
     void updateEnemySpawning(float dt);
     void updatePlayerMovement(float dt);
@@ -59,7 +60,7 @@ private:
 
     //游玩时的敌人生成
     float enemySpawnTimer{0.f};
-    float enemySpawnInterval{1.f};//每秒生成一只
+    float enemySpawnInterval{2.f};//每秒生成一只
 
-
+    float GameTime{0.f};
 };

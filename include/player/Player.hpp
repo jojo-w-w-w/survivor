@@ -27,7 +27,11 @@ public:
     bool canShoot() const;
     void resetShootTimer();
 
+    //处理无敌逻辑
     void updateDamageTimers(float dt);
+    bool isNB() const;
+    void updateVisual();    //更新玩家无敌的动画
+    
 
     //升级
     void addExp(int amount);

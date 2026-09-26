@@ -119,7 +119,39 @@ void PlayingState::spawnEnemy()
 {
     const sf::Vector2f spawnPosition = createEnemySpawnPosition();
 
-    auto enemy = EnemyFactory::createRandom(spawnPosition);
+    EnemyFactory::EnemyType type = EnemyFactory::EnemyType::Normal;
+
+    if(GameTime < 30.f)
+    {
+        //生成普通敌人
+        type = EnemyFactory::EnemyType::Normal;
+    }
+    else if(GameTime >= 30.f && GameTime < 60.f)
+    {
+        
+
+        //随机生成普通和快速敌人
+        static std::mt19937 generator(std::random_device{}());
+        std::uniform_int_distribution<int> distribution(0, 1);
+
+        type = distribution(generator) == 0
+            ? EnemyFactory::EnemyType::Normal
+            : EnemyFactory::EnemyType::Fast;
+    }
+    else
+    {   //生成BOSS
+        static std::mt19937 generator(std::random_device{}());
+        std::uniform_int_distribution<int> distribution(0, 2);
+
+        if(distribution(generator) == 0)
+            type = EnemyFactory::EnemyType::Normal;
+        if(distribution(generator) == 1)
+            type = EnemyFactory::EnemyType::Fast;
+        if(distribution(generator) == 2)
+            type = EnemyFactory::EnemyType::Boss;
+    }
+
+    auto enemy = EnemyFactory::create(type, spawnPosition);
 
     if (enemy)
     {
@@ -143,6 +175,16 @@ void PlayingState::updateEnemySpawning(float dt)
 {
     // 敌人生成计时器
     enemySpawnTimer += dt;
+    
+    if(GameTime >= 30.f)
+    {
+        enemySpawnInterval = 1.5f;
+    }
+
+    if(GameTime >= 60.f)
+    {
+        enemySpawnInterval = 1.f;
+    }
 
     if (enemySpawnTimer >= enemySpawnInterval)
     {
@@ -305,11 +347,14 @@ void PlayingState::handleCollisions()
         //如果玩家与敌人发生碰撞
         if(context.player->getBound().findIntersection(enemy->getBound()).has_value())
         {
-            context.player->takeDamage(1);   //玩家血量减去敌人的碰撞伤害
-            enemy->takeDamage(1);            //敌人血量减去玩家的碰撞伤害
-            if(!enemy->isActive())
+            if(context.player->takeDamage(1))
             {
-                context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
+                enemy->takeDamage(1);//敌人血量减去玩家的碰撞伤害
+
+                if(!enemy->isActive())
+                {
+                    context.player->addExp(enemy->getExp());//敌人死亡玩家获得经验
+                }
             }
         }
     }
@@ -386,6 +431,8 @@ void PlayingState::update(sf::Time delta)
 {
     float dt = delta.asSeconds();
 
+    GameTime += dt;//全局游戏时间
+
     context.player->updateDamageTimers(dt);
 
     updateEnemySpawning(dt);
@@ -393,6 +440,8 @@ void PlayingState::update(sf::Time delta)
     updateEnemyMovement(dt);
     updateShooting(dt);
     handleCollisions();
+
+    context.player->updateVisual();//碰撞后处理玩家的无敌动画显示
 
     bool shouldStop = handleStateTransitions();//用来记录是否处于死亡状态
     if(shouldStop)

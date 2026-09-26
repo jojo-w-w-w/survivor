@@ -140,11 +140,24 @@ void Player::resetShootTimer()
 
 void Player::updateDamageTimers(float dt)
 {
-    DamageIntervalTimer = std::max(0.f, DamageInterval- dt);
+    DamageIntervalTimer = std::max(0.f, DamageIntervalTimer- dt);
 
-    NbTimer = std::max(0.f, NbTime - dt);
+    NbTimer = std::max(0.f, NbTimer - dt);
 
-    NbCooldownTimer = std::max(0.f, NbCooldown - dt);
+    NbCooldownTimer = std::max(0.f, NbCooldownTimer - dt);
+}
+
+bool Player::isNB() const
+{
+    return NbTimer > 0.f;
+}
+
+void Player::updateVisual()
+{
+    if(isNB())
+        sprite.setColor(sf::Color(255, 255, 255, 100));
+    else
+        sprite.setColor(sf::Color::White);
 }
 
 void Player::addExp(int amount)
