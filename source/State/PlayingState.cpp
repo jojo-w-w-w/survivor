@@ -386,6 +386,8 @@ void PlayingState::update(sf::Time delta)
 {
     float dt = delta.asSeconds();
 
+    context.player->updateDamageTimers(dt);
+
     updateEnemySpawning(dt);
     updatePlayerMovement(dt);
     updateEnemyMovement(dt);

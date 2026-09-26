@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <SFML/Graphics.hpp>
+#include <algorithm>
 #include "Player.hpp"
 #include "ResourceManager.hpp"
 
@@ -9,7 +10,6 @@ texture(ResourceManager::getTexture("assets/Player.png")),
 sprite(*texture), walkAnimation({256, 256}, 6, 0.12f), 
 player_speed(200.f), maxHp(10), hp(10), 
 shootTimer(0.f), shootCooldown(1.f), bulletSpeed(400.f), bulletCount(1), 
-NbTimer(0.f), NbCooldown(1.f), 
 exp(0), expToNextLevel(10), level(1), pendingLevelUps(0)
 {
     // 像素画禁止平滑
@@ -88,19 +88,32 @@ bool Player::isDead() const
 {
     return hp <= 0;
 }
-
-void Player::takeDamage(int damage)
+bool Player::takeDamage(int damage)
 {
-    if(canNb)
+    //玩家死亡，处于无敌，上一次受伤间隔时间小于可以受伤的时间间隔
+    if(isDead() || damage <= 0 || NbTimer > 0.f || DamageIntervalTimer > 0.f)
     {
-        NbTimer = 0.f;
-        hp -= damage;
+        return false;
     }
+        
+    hp -= damage;
     
     if(hp < 0)
     {
         hp = 0;
     }
+
+    //受到伤害，设置间隔
+    DamageIntervalTimer = DamageInterval;
+
+    //玩家存活并且可以无敌的冷却时间已好
+    if(!isDead() && NbCooldownTimer <= 0.f)
+    {
+        NbTimer = NbTime;               //无敌的剩余时间等于无敌持续时间
+        NbCooldownTimer = NbCooldown;   //无敌的冷却时间设置为默认的无敌冷却时间
+    }
+
+    return true;
 }
 
 void Player::updateShootTimer(float dt)
@@ -125,22 +138,13 @@ void Player::resetShootTimer()
     shootTimer = 0.f;
 }
 
-void Player::updateNbTimer(float dt)
+void Player::updateDamageTimers(float dt)
 {
-    if(NbTimer < NbCooldown)
-    {
-        NbTimer += dt;
-    }
-}
+    DamageIntervalTimer = std::max(0.f, DamageInterval- dt);
 
-bool Player::canNb() const
-{
-    if(NbTimer >= NbCooldown)
-    {
-        return true;
-    }
-    return false;
-    
+    NbTimer = std::max(0.f, NbTime - dt);
+
+    NbCooldownTimer = std::max(0.f, NbCooldown - dt);
 }
 
 void Player::addExp(int amount)
